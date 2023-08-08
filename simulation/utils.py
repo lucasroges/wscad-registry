@@ -1,6 +1,3 @@
-from .strategies import p2p_registry_provisioning
-
-import random
 import edge_sim_py
 import networkx as nx
 
@@ -29,7 +26,7 @@ def get_candidate_hosts(entity_base_station: edge_sim_py.BaseStation) -> list:
     return edge_servers
 
 
-def delay_based_follow_user():
+def follow_user():
     """Simple strategy that keeps application services as close as possible to each other and to the end-user.
     However, this adapted strategy only migrates when the delay is greater than or equal to the delay SLA.
     It migrates user's services to the edge server closest to the base station used by the user or the previous service in the app chain
@@ -37,11 +34,9 @@ def delay_based_follow_user():
     """
     # Iterating over all users
     for user in edge_sim_py.User.all():
+        applications = user.applications
 
-        # Selecting applications that are violating delay SLA or near it (i.e., the delay between the user and the application is greater than or equal to the delay SLA times the delay threshold)
-        target_applications = [app for app in user.applications if user.delays[str(app.id)] >= user.delay_slas[str(app.id)]]
-
-        for application in target_applications:
+        for application in applications:
             for service in application.services:
                 # Skipping services that are already being migrated
                 if len(service._Service__migrations) > 0 and service._Service__migrations[-1]["status"] != "finished":
@@ -67,31 +62,6 @@ def delay_based_follow_user():
                     elif edge_server.has_capacity_to_host(service):
                         service.provision(target_server=edge_server)
                         break
-
-            # Updating the routes used by the user to communicate with his applications
-            user.set_communication_path(app=application)
-
-
-def algorithm_wrapper(parameters: dict):
-    """Wrapper function to store random state for different datasets while the algorithm runs.
-
-    Args:
-        parameters (dict): Strategy parameters
-    """
-    # Saving the random state to restore it later because the code below uses random and may variate between different strategies of container registry provisioning and/or network scheduling
-    random_state = random.getstate()
-
-    # Running the custom algorithm
-    try:
-        eval(f"{parameters['algorithm']}_registry_provisioning")(parameters=parameters)
-    except NameError:
-        print(f"{parameters['algorithm']} strategy does not require a custom algorithm.")
-
-    # Running the service reallocation algorithm
-    delay_based_follow_user()
-
-    # Restoring the random state
-    random.setstate(random_state)
 
 
 def least_congested_shortest_path(topology: edge_sim_py.Topology, source: edge_sim_py.NetworkSwitch, target: edge_sim_py.NetworkSwitch) -> list:

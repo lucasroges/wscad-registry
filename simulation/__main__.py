@@ -1,4 +1,5 @@
 from .utils import *
+from .wrapper import algorithm_wrapper
 
 import random
 import argparse
@@ -21,7 +22,7 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
 
     # Creating a Simulator object
     simulator = edge_sim_py.Simulator(
-        dump_interval=1500,
+        dump_interval=1800,
         logs_directory=f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed}",
         resource_management_algorithm=algorithm_wrapper,
         resource_management_algorithm_parameters={"algorithm": algorithm},
