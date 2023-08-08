@@ -7,13 +7,13 @@
         }
     },
     "network": {
-        "wireless_delay": 0,
+        "wireless_delay": 5,
         "topology": {
             "algorithm": "partially_connected_hexagonal_mesh",
             "link_specifications": [
                 {
                     "number_of_objects": 261,
-                    "delay": 1,
+                    "delay": 5,
                     "bandwidth": 12.5
                 }
             ]
@@ -2211,7 +2211,7 @@
     ],
     "applications": {
         "random_requirements": {
-            "delay_sla_values": [3, 6],
+            "delay_sla_values": [20, 35],
             "service_demand_values": [
                 {
                     "cpu_demand": 2,
