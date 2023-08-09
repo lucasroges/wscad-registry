@@ -32,6 +32,7 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
     )
 
     # Loading custom EdgeSimPy components and methods
+    edge_sim_py.EdgeServer.can_host_container_registry = edge_server_can_host_container_registry
     edge_sim_py.EdgeServer.step = edge_server_step_with_least_congested_shortest_path
     edge_sim_py.NetworkFlow.collect = network_flow_collect
     edge_sim_py.NetworkLink.collect = network_link_collect
