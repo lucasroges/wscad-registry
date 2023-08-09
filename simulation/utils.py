@@ -624,3 +624,37 @@ def topology_collect(self) -> dict:
     }
 
     return metrics
+
+
+def edge_server_can_host_container_registry(self, registry: object) -> bool:
+    """Checks if the edge server has container images and has enough free resources to host a given registry.
+
+    Args:
+        registry (object): Registry object.
+
+    Returns:
+        can_host (bool): Information of whether the edge server has capacity to host the registry or not.
+    """
+    # Checking if the edge server has container images
+    if len(self.container_images) == 0:
+        return False
+
+    # Calculating the additional disk demand that would be incurred to the edge server
+    registry_image = edge_sim_py.ContainerImage.find_by(attribute_name="name", attribute_value="registry")
+
+    edge_server_has_registry_image = any([
+        image.digest == registry_image.digest for image in self.container_images
+    ])    
+
+    additional_disk_demand = 0 if edge_server_has_registry_image else sum([
+        edge_sim_py.ContainerLayer.find_by(attribute_name="digest", attribute_value=digest).size for digest in registry_image.layers_digests
+    ])
+
+    # Calculating the edge server's free resources
+    free_cpu = self.cpu - self.cpu_demand
+    free_memory = self.memory - self.memory_demand
+    free_disk = self.disk - self.disk_demand
+
+    # Checking if the host would have resources to host the registry and its (additional) layers
+    can_host = free_cpu >= registry.cpu_demand and free_memory >= registry.memory_demand and free_disk >= additional_disk_demand
+    return can_host
