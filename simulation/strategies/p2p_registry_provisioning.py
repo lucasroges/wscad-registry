@@ -23,4 +23,5 @@ def p2p_registry_provisioning(parameters: dict):
         if edge_server_free_cpu < template_registry.cpu_demand or edge_server_free_memory < template_registry.memory_demand:
             continue
 
-        edge_sim_py.ContainerRegistry.provision(target_server=edge_server)
+        container_registry = edge_sim_py.ContainerRegistry.provision(target_server=edge_server)
+        container_registry.p2p_registry = True
