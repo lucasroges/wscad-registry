@@ -658,3 +658,27 @@ def edge_server_can_host_container_registry(self, registry: object) -> bool:
     # Checking if the host would have resources to host the registry and its (additional) layers
     can_host = free_cpu >= registry.cpu_demand and free_memory >= registry.memory_demand and free_disk >= additional_disk_demand
     return can_host
+
+
+def container_registry_collect(self) -> dict:
+    """Method that collects a set of metrics for the object.
+
+    Returns:
+        metrics (dict): Object metrics.
+    """
+    flows_using_the_registry = [
+        flow for flow in edge_sim_py.NetworkFlow.all() if flow.status == "active" and flow.metadata["container_registry"] == self
+    ]
+
+    metrics = {
+        "Available": self.available,
+        "CPU Demand": self.cpu_demand,
+        "RAM Demand": self.memory_demand,
+        "Server": self.server.id if self.server else None,
+        "Images": [image.id for image in self.server.container_images] if self.server else [],
+        "Layers": [layer.id for layer in self.server.container_layers] if self.server else [],
+        "P2P": self.p2p_registry,
+        "Provisioning": 1 if len(flows_using_the_registry) > 0 else 0,
+        "Not Provisioning": 0 if len(flows_using_the_registry) > 0 else 1,
+    }
+    return metrics
