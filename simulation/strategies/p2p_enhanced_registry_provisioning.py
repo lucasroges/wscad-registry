@@ -192,13 +192,13 @@ def p2p_enhanced_registry_provisioning(parameters: dict):
         has_container_registry = server.container_registries != []
         
         if is_qualified_server and not has_container_registry:
-            container_registry = edge_sim_py.ContainerRegistry(
-                cpu_demand=template_registry.cpu_demand,
-                memory_demand=template_registry.memory_demand,
+            container_registry = edge_sim_py.ContainerRegistry.provision(
+                target_server=server,
+                registry_cpu_demand=template_registry.cpu_demand,
+                registry_memory_demand=template_registry.memory_demand,
             )
             container_registry.p2p_registry = True
 
-            container_registry.provision(server)
         elif not is_qualified_server and has_container_registry:
             container_registry = server.container_registries[0]
 
