@@ -87,16 +87,10 @@ def main(seed: int, input_filename: str, output_filename: str, registry_provisio
     # Restoring seed state
     random.setstate(random_state)
 
-    # Creating uniform distribution for delay slas and service demands
-    delay_slas = []
+    # Creating uniform distribution for service demands
     service_demands = []
 
     if ("random_requirements" in base_scenario["applications"]):
-        delay_slas = uniform(
-            n_items=sum([application["number_of_objects"] for application in base_scenario["applications"]["specifications"] if "delay_sla" not in application]),
-            valid_values=base_scenario["applications"]["random_requirements"]["delay_sla_values"],
-            shuffle_distribution=True,
-        )
         service_demands = uniform(
             n_items=sum([application["number_of_objects"] * len(application["services"]) for application in base_scenario["applications"]["specifications"]]),
             valid_values=base_scenario["applications"]["random_requirements"]["service_demand_values"],
@@ -121,8 +115,7 @@ def main(seed: int, input_filename: str, output_filename: str, registry_provisio
                 create_application_service(application, service_specification)
             # Connecting user to application and its services
             application_user = users.pop(0)
-            delay_sla = application_spec["delay_sla"] if "delay_sla" in application_spec else delay_slas.pop()
-            connect_user_to_application(application_user, application, delay_sla)
+            connect_user_to_application(application_user, application)
 
     # Provisioning services
     delay_based_service_provisioning()

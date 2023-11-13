@@ -148,34 +148,6 @@ def normalize_cpu_and_memory(cpu, memory) -> float:
     return normalized_value
 
 
-def application_has_useful_migrations_for_user(application: edge_sim_py.Application, user: edge_sim_py.User) -> bool:
-    """Method that checks if an application has useful migrations. (i.e., at the end of the ongoing migrations, the delay SLA is met)
-    Args:
-        application (edge_sim_py.Application): Application object.
-    Returns:
-        bool: True if the application has useful migrations, False otherwise.
-    """
-
-    services_base_stations = [
-        service._Service__migrations[-1]["target"].base_station
-        if len(service._Service__migrations) > 0 and service._Service__migrations[-1]["status"] != "finished"
-        else service.server.base_station
-    for service in application.services]
-
-    base_stations = [user.base_station, *services_base_stations]
-
-    delay = base_stations[0].wireless_delay
-    for i in range(1, len(base_stations)):
-        path = find_shortest_path(base_stations[i - 1].network_switch, target=base_stations[i].network_switch)
-        path_delay = sum([edge_sim_py.Topology.first()[path[i]][path[i + 1]]["delay"] for i in range(len(path) - 1)])
-        delay += path_delay
-
-    if delay > user.delay_slas[str(application.id)]:
-        return False
-
-    return True
-
-
 def edge_server_step_with_least_congested_shortest_path(self):
     """Method that executes the events involving the object at each time step.
     
@@ -538,23 +510,6 @@ def user_collect(self) -> dict:
     Returns:
         metrics (dict): Object metrics.
     """
-    # Checking for delay SLA violations
-    for app in self.applications:
-        if self.delays[str(app.id)] != None and self.delays[str(app.id)] != float("inf") and self.delays[str(app.id)] > self.delay_slas[str(app.id)]:
-            self.delay_sla_violations[str(app.id)] += 1
-            self.accumulated_violation_intensity += self.delays[str(app.id)] - self.delay_slas[str(app.id)]
-            # Checking for delay SLA violations during migrations
-            is_violation_during_migration = False
-            for service in app.services:
-                if len(service._Service__migrations) > 0 and service._Service__migrations[-1]["status"] != "finished":
-                    is_violation_during_migration = True
-            
-            if is_violation_during_migration:
-                self.delay_sla_violations_during_migrations[str(app.id)] += 1
-
-    # Checking for useless migrations
-    self.steps_during_useless_migrations += 0 if application_has_useful_migrations_for_user(application=self.applications[0], user=self) else 1
-
     # Computing application metrics
     application_chain_size = len(self.applications[0].services)
     application_cpu_demand = sum([service.cpu_demand for service in self.applications[0].services])
@@ -565,14 +520,9 @@ def user_collect(self) -> dict:
         "Coordinates": self.coordinates,
         "Base Station": f"{self.base_station} ({self.base_station.coordinates})" if self.base_station else None,
         "Delays": sum(self.delays.values()),
-        "Delay SLAs": sum(self.delay_slas.values()),
-        "Delay SLA Violations": sum(self.delay_sla_violations.values()),
-        "Delay SLA Violations During Migrations": sum(self.delay_sla_violations_during_migrations.values()),
         "Application Chain Size": application_chain_size,
         "Application CPU Demand": application_cpu_demand,
         "Application Memory Demand": application_memory_demand,
-        "Steps During Useless Migrations": self.steps_during_useless_migrations,
-        "Accumulated Violation Intensity": self.accumulated_violation_intensity,
     }
     return metrics
 

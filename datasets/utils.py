@@ -255,20 +255,14 @@ def random_user_placement(map_coordinates: list):
     return coordinates
 
 
-def connect_user_to_application(user: edge_sim_py.User, application: edge_sim_py.Application, delay_sla: int):
+def connect_user_to_application(user: edge_sim_py.User, application: edge_sim_py.Application):
     """Connects an user to an application with a certain delay SLA and access pattern.
 
     Args:
         user (edge_sim_py.User): The user to be connected to the application.
         application (edge_sim_py.Application): The application to be connected to the user.
-        delay_sla (int): The delay SLA of the user to the application.
     """
-    user.delay_sla_violations = {}
-    user.delay_sla_violations_during_migrations = {}
-
-    user._connect_to_application(app=application, delay_sla=delay_sla)
-    user.delay_sla_violations[str(application.id)] = 0
-    user.delay_sla_violations_during_migrations[str(application.id)] = 0
+    user._connect_to_application(app=application, delay_sla=float("inf"))
 
     for service in application.services:
         service.users.append(user)
@@ -369,13 +363,8 @@ def user_to_dict(self) -> dict:
             "coordinates": self.coordinates,
             "coordinates_trace": self.coordinates_trace,
             "delays": copy.deepcopy(self.delays),
-            "delay_slas": copy.deepcopy(self.delay_slas),
-            "delay_sla_violations": copy.deepcopy(self.delay_sla_violations),
-            "delay_sla_violations_during_migrations": copy.deepcopy(self.delay_sla_violations_during_migrations),
             "communication_paths": copy.deepcopy(self.communication_paths),
             "making_requests": copy.deepcopy(self.making_requests),
-            "steps_during_useless_migrations": self.steps_during_useless_migrations,
-            "accumulated_violation_intensity": self.accumulated_violation_intensity,
         },
         "relationships": {
             "access_patterns": access_patterns,
@@ -455,7 +444,6 @@ def dataset_analysis():
     for user_metadata in users:
         user_attrs = {
             "object": user_metadata["object"],
-            "sla": user_metadata["object"].delay_slas[str(user_metadata["object"].applications[0].id)],
             "service_chain_size": len(user_metadata["object"].applications[0].services),
             "min": user_metadata["min_delay"],
             "max": user_metadata["max_delay"],
@@ -463,8 +451,6 @@ def dataset_analysis():
             "delays": user_metadata["delays"],
         }
         print(f"{user_attrs}")
-        if user_attrs["min"] > user_attrs["sla"]:
-            print(f"\n\nWARNING: {user_attrs['object']} has the minimum delay to an edge server greater than the delay SLA!\n\n")
 
     # Calculating the infrastructure occupation and information about the services
     edge_server_cpu_capacity = 0

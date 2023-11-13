@@ -50,9 +50,6 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
     # Executing the simulation
     simulator.run_model()
 
-    # Printing the results of SLA violations
-    print(f"[algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed}]: {sum([sum(user.delay_sla_violations.values()) for user in edge_sim_py.User.all()])} SLA violations")
-
 if __name__ == "__main__":
     # Parsing command line arguments
     arguments = parse_arguments(argparse.ArgumentParser())
