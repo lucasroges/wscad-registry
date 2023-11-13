@@ -22,10 +22,14 @@ def run_simulation(dataset: str, seed: int):
 
 # Parameters
 datasets = [
-    ("datasets/central.json", "central"),
-    ("datasets/community.json", "community"),
-    ("datasets/p2p.json", "p2p"),
-    ("datasets/p2p.json", "p2p_enhanced"),
+    ("datasets/central_minimal.json", "central"),
+    ("datasets/community_minimal.json", "community"),
+    ("datasets/p2p_minimal.json", "p2p"),
+    ("datasets/p2p_minimal.json", "p2p_enhanced"),
+    ("datasets/central_recommended.json", "central"),
+    ("datasets/community_recommended.json", "community"),
+    ("datasets/p2p_recommended.json", "p2p"),
+    ("datasets/p2p_recommended.json", "p2p_enhanced"),
 ]
 
 seeds = [1, 2, 3, 4, 5]
