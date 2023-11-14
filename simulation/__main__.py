@@ -38,6 +38,7 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
     edge_sim_py.EdgeServer.step = edge_server_step_with_least_congested_shortest_path
     edge_sim_py.NetworkFlow.collect = network_flow_collect
     edge_sim_py.NetworkLink.collect = network_link_collect
+    edge_sim_py.NetworkLink.step = network_link_step
     edge_sim_py.Service.step = service_step
     edge_sim_py.Service.collect = service_collect
     edge_sim_py.Service.provision = service_provision
