@@ -7,13 +7,13 @@
         }
     },
     "network": {
-        "wireless_delay": 5,
+        "wireless_delay": 10,
         "topology": {
             "algorithm": "partially_connected_hexagonal_mesh",
             "link_specifications": [
                 {
                     "number_of_objects": 261,
-                    "delay": 5,
+                    "delay": 10,
                     "bandwidth": 12.5
                 }
             ]

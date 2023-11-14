@@ -7,13 +7,13 @@
         }
     },
     "network": {
-        "wireless_delay": 5,
+        "wireless_delay": 10,
         "topology": {
             "algorithm": "partially_connected_hexagonal_mesh",
             "link_specifications": [
                 {
                     "number_of_objects": 261,
-                    "delay": 5,
+                    "delay": 10,
                     "bandwidth": 12.5
                 }
             ]
@@ -49,8 +49,8 @@
     },
     "container_registries": {
         "specifications": {
-            "cpu_demand": 4,
-            "memory_demand": 16384,
+            "cpu_demand": 2,
+            "memory_demand": 4096,
             "images": [
                 {
                     "name": "registry",
