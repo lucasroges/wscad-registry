@@ -211,22 +211,24 @@ def network_flow_collect(self) -> dict:
     else:
         object_being_transferred = str(self.metadata["object"])
 
-    metrics = {
-        "Instance ID": self.id,
-        "Object being Transferred": object_being_transferred,
-        "Object Type": self.metadata["type"],
-        "Start": self.start,
-        "End": self.end,
-        "Source": self.source.id if self.source else None,
-        "Target": self.target.id if self.target else None,
-        "Path": [node.id for node in self.path],
-        "Links Bandwidth": bw,
-        "Actual Bandwidth": actual_bw,
-        "Status": self.status,
-        "Data to Transfer": self.data_to_transfer,
-        "Data Size": self.metadata["size"],
-    }
-    return metrics
+    if self.status == "finished" and self.end == self.model.schedule.steps + 1:
+        metrics = {
+            "Instance ID": self.id,
+            "Object being Transferred": object_being_transferred,
+            "Object Type": self.metadata["type"],
+            "Start": self.start,
+            "End": self.end,
+            "Source": self.source.id if self.source else None,
+            "Target": self.target.id if self.target else None,
+            "Path": [node.id for node in self.path],
+            "Links Bandwidth": bw,
+            "Actual Bandwidth": actual_bw,
+            "Status": self.status,
+            "Data Size": self.metadata["size"],
+        }
+        return metrics
+
+    return {}
 
 
 def network_link_collect(self) -> dict:
@@ -630,5 +632,25 @@ def container_registry_collect(self) -> dict:
         "P2P": self.p2p_registry,
         "Provisioning": 1 if len(flows_using_the_registry) > 0 else 0,
         "Not Provisioning": 0 if len(flows_using_the_registry) > 0 else 1,
+    }
+    return metrics
+
+
+def edge_server_collect(self) -> dict:
+    """Method that collects a set of metrics for the object.
+    
+    Returns:
+        metrics (dict): Object metrics.
+    """
+    metrics = {
+        "Instance ID": self.id,
+        "Coordinates": self.coordinates,
+        "Available": self.available,
+        "CPU": self.cpu,
+        "RAM": self.memory,
+        "Disk": self.disk,
+        "CPU Demand": self.cpu_demand,
+        "RAM Demand": self.memory_demand,
+        "Disk Demand": self.disk_demand,
     }
     return metrics
