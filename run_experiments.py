@@ -6,14 +6,15 @@ import os
 
 NUMBER_OF_PARALLEL_PROCESSES =  os.cpu_count() - 1
 
-def run_simulation(dataset: str, seed: int):
+SEED = "1"
+
+def run_simulation(dataset: str):
     """Executes the simulation with the specified parameters.
 
     Args:
         dataset (tuple): Tuple containing the path to the dataset file, the algorithm name and a boolean indicating if some mapped servers should not host container registries. 
-        seed (int): Seed value for EdgeSimPy.
     """
-    cmd = f"/home/dellcloud/.cache/pypoetry/virtualenvs/p2p-enhanced-registry-provisioning-7g8CcTQ_-py3.10/bin/python -m simulation -a {dataset[1]} -d {dataset[0]} -s {seed} -n 3600"
+    cmd = f"poetry run python -m simulation -a {dataset[1]} -d {dataset[0]} -s {SEED} -n 3600"
     print(f"    cmd = {cmd}")
 
     return Popen(cmd.split(" "), stdout=DEVNULL, stderr=DEVNULL)
@@ -22,27 +23,19 @@ def run_simulation(dataset: str, seed: int):
 
 # Parameters
 datasets = [
-    ("datasets/central_minimal.json", "central"),
-    ("datasets/community_minimal.json", "community"),
-    ("datasets/p2p_minimal.json", "p2p"),
-    ("datasets/p2p_minimal.json", "p2p_enhanced"),
-    ("datasets/central_recommended.json", "central"),
-    ("datasets/community_recommended.json", "community"),
-    ("datasets/p2p_recommended.json", "p2p"),
-    ("datasets/p2p_recommended.json", "p2p_enhanced"),
+    ("datasets/central.json", "central"),
+    ("datasets/community.json", "community"),
+    ("datasets/p2p.json", "p2p"),
+    ("datasets/p2p.json", "dynamic"),
 ]
 
-seeds = [1, 2, 3, 4, 5]
-
 print(f"Datasets: {datasets}")
-print(f"Seeds: {seeds}")
 print()
 
 # Generating list of combinations with the parameters specified
 combinations = list(
     itertools.product(
-        datasets,
-        seeds,
+        datasets
     )
 )
 
@@ -53,15 +46,13 @@ print(f"EXECUTING {len(combinations)} COMBINATIONS")
 for i, parameters in enumerate(combinations, 1):
     # Parsing parameters
     dataset = parameters[0]
-    seed = parameters[1]
 
     print(f"\t[Execution {i}]")
-    print(f"\t\t[dataset={dataset}] seed={seed}.")
+    print(f"\t\t[dataset={dataset}]")
 
     # Executing algorithm
     proc = run_simulation(
         dataset=dataset,
-        seed=seed,
     )
 
     processes.append(proc)
