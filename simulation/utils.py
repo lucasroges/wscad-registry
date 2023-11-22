@@ -373,6 +373,9 @@ def service_collect(self) -> dict:
     total_waiting_time = sum([migration["waiting_time"] for migration in self._Service__migrations])
     total_pulling_layers_time = sum([migration["pulling_layers_time"] for migration in self._Service__migrations])
 
+    average_migration_duration = sum([migration["end"] - migration["start"] for migration in self._Service__migrations if migration["status"] == "finished"]) / number_of_finished_migrations if number_of_finished_migrations > 0 else 0
+    average_migration_without_using_cache_duration = sum([migration["end"] - migration["start"] for migration in self._Service__migrations if migration["status"] == "finished" and migration["waiting_time"] + migration["pulling_layers_time"] > 0]) / number_of_finished_migrations_without_using_cache if number_of_finished_migrations_without_using_cache > 0 else 0
+
     metrics = {
         "Instance ID": self.id,
         "Available": self._available,
@@ -383,6 +386,8 @@ def service_collect(self) -> dict:
         "Number of Finished Migrations Without Using Cache": number_of_finished_migrations_without_using_cache,
         "Total Waiting Time": total_waiting_time,
         "Total Pulling Layers Time": total_pulling_layers_time,
+        "Average Migration Duration": average_migration_duration,
+        "Average Migration Without Using Cache Duration": average_migration_without_using_cache_duration,
     }
     return metrics
 
