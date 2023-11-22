@@ -1,4 +1,4 @@
-from .strategies import p2p_registry_provisioning, p2p_enhanced_registry_provisioning
+from .strategies import p2p_registry_provisioning, dynamic_registry_provisioning
 from .utils import follow_user
 
 import random

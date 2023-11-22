@@ -152,8 +152,8 @@ def calculate_scores(candidate_servers: list):
     return scores_metadata
 
 
-def p2p_enhanced_registry_provisioning(parameters: dict):
-    """P2P-based enhanced registry provisioning strategy.
+def dynamic_registry_provisioning(parameters: dict):
+    """Dynamic registry provisioning strategy.
     This strategy dynamically (de)provisions container registries in edge servers based on the demand for container images. 
 
     Args:
