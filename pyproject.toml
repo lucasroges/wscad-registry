@@ -1,10 +1,9 @@
 [tool.poetry]
-name = "p2p-enhanced-registry-provisioning"
+name = "dynamic-registry-provisioning"
 version = "0.1.0"
-description = "P2P-enhanced registry provisioning on edge computing infrastructures"
+description = "Dynamic registry provisioning on edge computing infrastructures"
 authors = ["Lucas Roges <lucasrogesaraujo@gmail.com>"]
 readme = "README.md"
-packages = [{include = "p2p_enhanced_registry_provisioning"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
