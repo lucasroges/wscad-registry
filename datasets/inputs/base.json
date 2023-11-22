@@ -1,0 +1,3953 @@
+{
+    "map": {
+        "grid_type": "hexagonal",
+        "dimensions": {
+            "width": 10,
+            "height": 10
+        }
+    },
+    "network": {
+        "wireless_delay": 10,
+        "topology": {
+            "algorithm": "partially_connected_hexagonal_mesh",
+            "link_specifications": [
+                {
+                    "number_of_objects": 261,
+                    "delay": 10,
+                    "bandwidth": 125
+                }
+            ]
+        }
+    },
+    "edge_servers": {
+        "specifications": [
+            {
+                "is_implemented": false,
+                "name": "sgi",
+                "number_of_objects": 8,
+                "cpu": 32,
+                "memory": 32768,
+                "disk": 131072
+            },
+            {
+                "is_implemented": false,
+                "name": "hpe",
+                "number_of_objects": 8,
+                "cpu": 48,
+                "memory": 65536,
+                "disk": 131072
+            },
+            {
+                "is_implemented": false,
+                "name": "acer",
+                "number_of_objects": 8,
+                "cpu": 36,
+                "memory": 65536,
+                "disk": 131072
+            }
+        ]
+    },
+    "container_registries": {
+        "specifications": {
+            "cpu_demand": 2,
+            "memory_demand": 8192,
+            "images": [
+                {
+                    "name": "registry",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-ag-0.6.2",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-ag-0.8.2",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-djl-0.21.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-djl-0.22.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-djl-0.23.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-hf-1.13.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-hf-2.0.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-hf-2.11.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-mxnet-1.9.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-pytch-1.12.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-pytch-1.12.1-grav",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-pytch-1.12.1-grav-sage",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-pytch-1.13.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-pytch-2.0.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.10.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.10.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.11.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.12.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.12.1-grav",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.12.1-grav-sage",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.13.0",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.9.1-grav",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.9.1-grav-sage",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.9.2",
+                    "tag": "latest"
+                },
+                {
+                    "name": "aws-tf-2.9.3",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-minimal",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-onnx-1.6",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-pytch-1.6",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-pytch-1.7",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-sklearn-0.24.1",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-tf-1.15",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-tf-2.4",
+                    "tag": "latest"
+                },
+                {
+                    "name": "azure-xgboost-0.9",
+                    "tag": "latest"
+                }
+            ]
+        }
+    },
+    "container_images": [
+        {
+            "name": "registry",
+            "tag": "latest",
+            "digest": "sha256:0f7e785a49386d7e98c502151f9b01dc5578aa4f13078a346b2c5cf50433f663",
+            "layers": [
+                {
+                    "digest": "sha256:31e352740f534f9ad170f75378a84fe453d6156e40700b882d737a8f4a6988a3",
+                    "size": 3397879,
+                    "instruction": "ADD file:1da756d12551a0e3e793e02ef87432d69d4968937bd11bed0af215db19dd94cd in / "
+                },
+                {
+                    "digest": "sha256:7f9bcf943fa5571df036dca6da19434d38edf546ef8bb04ddbc803634cc9a3b8",
+                    "size": 284706,
+                    "instruction": "/bin/sh -c apk add --no-cache ca-certificates"
+                },
+                {
+                    "digest": "sha256:3c98a1678a828702ff10429bc5572b70bd36b7591af3102b8b8ffb8a3e5caf00",
+                    "size": 5908098,
+                    "instruction": "/bin/sh -c set -eux; \tversion='2.8.2'; \tapkArch=\"$(apk --print-arch)\"; \tcase \"$apkArch\" in \t\tx86_64)  arch='amd64';   sha256='b68ffb849bcdb49639dc91ba97baba6618346f95fedc0fcc94871b31d515d205' ;; \t\taarch64) arch='arm64';   sha256='3d500cf4f7f21ade4bdfef28012aef8e1ec2b221d2d8d36d201d94dda84fa727' ;; \t\tarmhf)   arch='armv6';   sha256='e65aeccf69e779681f75b488c4e955f9d9b6aa1d7cf961a9307e8b6d40229373' ;; \t\tarmv7)   arch='armv7';   sha256='045154b2be7a6a3b5d35e14e9afcd29d01813f46ce7ea2ea40958048b621dfd0' ;; \t\tppc64le) arch='ppc64le'; sha256='21f5523bb0815af9b7e41b52824d422679309773a14a841e8e685e1f521c1ee0' ;; \t\ts390x)   arch='s390x';   sha256='2ec05870ffa8c47e764e8de08d00dd0748698cf36394e4b3a503a1339b93e251' ;; \t\t*) echo >&2 \"error: unsupported architecture: $apkArch\"; exit 1 ;; \tesac; \twget -O registry.tar.gz \"https://github.com/distribution/distribution/releases/download/v${version}/registry_${version}_linux_${arch}.tar.gz\"; \techo \"$sha256 *registry.tar.gz\" | sha256sum -c -; \ttar --extract --verbose --file registry.tar.gz --directory /bin/ registry; \trm registry.tar.gz; \tregistry --version"
+                },
+                {
+                    "digest": "sha256:51f7a5bb21d44512763273df5a6b9952841ee0c196e2a46ef3eea8a0a576650d",
+                    "size": 400,
+                    "instruction": "COPY file:4544cc1555469403b322faecc1cf1ca584667c43a6a60b17300f97840c04196e in /etc/docker/registry/config.yml "
+                },
+                {
+                    "digest": "sha256:3f044f23c427a0d008ebdeeb52b70fa21385e7b7b2407c37c9a029cc36f671c2",
+                    "size": 214,
+                    "instruction": "COPY file:507caa54f88c1f3862e5876e09a108b2083630ba24c57ad124e356a2de861d62 in /entrypoint.sh "
+                }
+            ]
+        },
+        {
+            "name": "aws-ag-0.6.2",
+            "tag": "latest",
+            "digest": "sha256:7b5ea1838e65f770591abe49f58e12db1c46de66bccd1cd97b0b57b608e9b925",
+            "layers": [
+                {
+                    "digest": "sha256:846c0b181fff0c667d9444f8378e8fcfa13116da8d308bf21673f7e4bea8d580",
+                    "size": 28576882,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:23ab708231ee7f4b423925f2aa4c82991f7816647f448664f1c6d66e871ce12c",
+                    "size": 344,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d789603286467cbf476a7c562dd3551dd00da1dccf7f59e15bd088e97ae1ec61",
+                    "size": 555738776,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:795c2c5a1a26743f19a0eeaf18bfa9ea78289ab3e4736c4e63da0acfe3c6f381",
+                    "size": 203614,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:84a4cf75c1de229f3ccb0d0392856856de20af67c1e063a74acbef3b0c31e24e",
+                    "size": 4036771,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:711b4a01cc2bea44c09ece844c1e824a1f6e76c3319ac6a4089c36a7b729d460",
+                    "size": 417382786,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6e77a186a99b0cc16a5864836fd94e0c863f6eec3a08ec681738851cab927456",
+                    "size": 177,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bfff30a0bb0d5b461ab15d06df92a79fce9b3ec2314193143a88585d7f08ccea",
+                    "size": 373618978,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a796d32aa74a914ea247dbe408fa9f795dfc2c39937b8e338644ca68834e39ad",
+                    "size": 109842,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b3a8fb34f66852513fca1ea403d30403a45acd901627555c98404d7c348bf7d1",
+                    "size": 72253696,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2ba51f4946275acab0c2f800a1c61053d4f4042ee3e56c4fa407c6f4d42f4362",
+                    "size": 4670,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:12f506c8dec3cde8e264cc15475093f161079dad5cade7f62c565f13d1210020",
+                    "size": 686,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bbbf9a1673419e4e2cde977c1bed4ac901f685a3d9aacc0e4f194de153a082b2",
+                    "size": 626,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:39c3999d6f47b4887d220c9dfee04ac0c672e9fb8f64ec91eeeab9bf0ccb2cee",
+                    "size": 686,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9728248862e272174f39c0495d8e268f1f6fc807f018509155e692e5bf1dc1e5",
+                    "size": 3399,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a680d30e2510b74c432123211d6d2da0b61f348445ba842e2de861772dfc6e79",
+                    "size": 3400,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3349f07337e5806d53882a345cb4cfa5391f2c8d0196b720eee903ac21c95afb",
+                    "size": 1323271,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bd71d4d9c3070928ceeb2d08c941fc294d11ec6f1ea075aa369350f64cf92e35",
+                    "size": 1527,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9c3431ab84d587d572f941af3b6001e64c20728f6b2eb433b53656dba12605f3",
+                    "size": 135120269,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b09166f75f8e04d0c2e8b9018280af18944dcd8fb2e99ae2012a1429a3d37c4e",
+                    "size": 62704,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:49a81055fb5d12176c6bb6758d75055a8e423e3da231580053e94845f307c9b7",
+                    "size": 744,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4d204045bafafabffaf7541f1096f71f45ccfbbf28afcce4a7010d1e5d95cf7d",
+                    "size": 746,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2d9d0357aa3263275ae9a5f08f4acae12dd70a8d8253a1afe7df476798845e26",
+                    "size": 1269470,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e1d800941868e874dafde10c3b97454bfc2719334532861ae9b5a2c4675159e1",
+                    "size": 1547,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:98b43bf42b258c3280d4f67d5a1a5d908bf957f3f3c7a6d31fbc31a3c9ccd193",
+                    "size": 2151489,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a72c8fab2a06dd89acff41e4d1522d308dec9bc099bebbbdbefff4d2a98ffc5b",
+                    "size": 61253435,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9664f653a1ba1d9710d670d9a89cc1caa91ab9352a8c5fd08cb859064dfbe818",
+                    "size": 2833,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:39a07e4fa74e01926de955f5b7c9b9d17e7ecfd97f6f49f4a22dcb7a1e75dcb7",
+                    "size": 350,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:77cede43e9726f7b852ab65befe0f5096f3d81a76d9b5df5496055f9f413171b",
+                    "size": 3400,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:df5b41d186ed4901f700f855dd6a5dd363be06dadac98064794ae74f1a21b978",
+                    "size": 3400,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c8c15898758e258cb1d09974b7d5b1e09c5fa9e59896ca759f4301a18d73d3d7",
+                    "size": 732,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:434ad1a4f83676842fadcfd1242f525db796a5e09353ea833bc76d694cc2524e",
+                    "size": 733,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4ed2d7da57cca05f02bc8ecc9715ffaa4f0844f35c61e4f478f55686165db8d4",
+                    "size": 854863346,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:628013e04d026a7689c82e23b0d12887ee989a53a369ad637f9117eaf5095290",
+                    "size": 242,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ac010898de10c5cba55ae5aa32cf670b7a24fcc9783ec7de8a944bf4ca8483ef",
+                    "size": 1389084,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7c1a54fb6da34e532811777855baebd326a1a5e02d0fff68ed11a9619f04c88e",
+                    "size": 68556,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9c5ad6522dd5974295bdcc63c76f1f96309cfddafd47473da0eb5a23a24f6e74",
+                    "size": 3251,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-ag-0.8.2",
+            "tag": "latest",
+            "digest": "sha256:b89de6d2f2d9a66c83896e94ef7eeb89fa30515800edd0d87d1014e031369142",
+            "layers": [
+                {
+                    "digest": "sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8",
+                    "size": 28578563,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9d2042f483634bd0cb091ae15a5dc34f63ba39e61dc08096ac6fc1185d150c54",
+                    "size": 409629448,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6a670b109c82351cf011d24a9dae0df139bc70a2dcccfa63713518784b469611",
+                    "size": 225114,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5a6899d318a2af34f4f6a4f912a8ef342a8ffc0911250650e88e06f444787692",
+                    "size": 4194758,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7fc328926a3e1e76b4563d15cf92b65abf1e8820919f36933f8c64956ce08b9b",
+                    "size": 483225505,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:aa035769fc8215439234dcdd1ad503cb72295c03f8c85c986eab6e978ed16310",
+                    "size": 5605944,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a9e01d3cfc3a36e13ee8322262c9f5ac59a26d94a21c3aa866ffee620fdca90c",
+                    "size": 365312511,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bd7bf21de0ce6b358aad62122ab91f8220fb48b48b5c7207d4684a049402b06d",
+                    "size": 85645337,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:344feeea02931313a92adae819a2cbf5f6558b967c63be1c862386f04ba42211",
+                    "size": 119892,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fecebe480a8543fb07552dd90e92fda62bceee531f262a4a8c3d69b1f72aed29",
+                    "size": 4672,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a6429dbe8396cfe0cb37600b4db188da0dbaf64b4ce088ae82de1a634e67eb11",
+                    "size": 684,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:69d6307dbade8df6d5026f3cbf3ac34e87f4f3ede8f0ddb731da30a287d478a0",
+                    "size": 627,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:02103edcac770877c9315ac69ff63ebef8d50f74d1287552040322bb49b1c5a7",
+                    "size": 682,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7ebf2d91a8dabc56009db09aba31cf7ede722e2b082bcdc24bf412275579c2cb",
+                    "size": 3504,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:196aa584617eb8bb235277e58cdfc941beb4e449bca67384ac022df356591170",
+                    "size": 3502,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5af2623c4163976059924d910f591bed0fb61a2a3c549e9b46a29a8c6d62ab70",
+                    "size": 1353941,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:66f8fb5edeaa54607c3339708cf6f4bae090674de7787afa2dca66b676dcaf05",
+                    "size": 1526,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1965d94874e26e24c6b2e180f05689c90a9dd37513b3361fc9a68d554291fcec",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:88714606e98879d183b070e16df43d2102c07dc2cf10431c61f0b677610cd729",
+                    "size": 114612603,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:499dcade6c65f620bd0b91be48ff27791cf3a09f99bbfeb447c3df3e29371d26",
+                    "size": 64081,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:85001c5024f0956dca13c8281301fcd56009cc28094f7f82cf30b889dc5aba96",
+                    "size": 743,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:100f6bf6067e660461488229b1908033b7d83a159910a17c12f6f2e2c72b0f23",
+                    "size": 741,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1f8153aa91c15d2718995f1ded057cdfc610c4c297c73e183fc546e98cdd5321",
+                    "size": 1367324,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2743af30515124b41b46cc5323e4a4ce847742e3ce676e0263590c7d660fb201",
+                    "size": 125,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0d457858d7d3bdbd50ce6d2eb71e6121c3762549c1c79e3b702537191a2584b3",
+                    "size": 1809,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6fa8e7944df25802cc9fb88d4d61bdd8392d35826c07c394997550a701d3a08b",
+                    "size": 43519183,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:22347c2f553463e7505d2545c83dcec0722079251b21e1dc7cb139aeb43faa86",
+                    "size": 756774415,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1f2da1b9758ede8196422ee32d7b74ed1c0065d56a8456046ce396e94497be61",
+                    "size": 498,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b99c460c762226724e76777a0f483481f6f75f4759c5964c91b129b9347c4e69",
+                    "size": 633,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:00858d86c35bd17e2e565d156a4e048b15c0b0f29b68a965fe5a90a2ff235255",
+                    "size": 744,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d6d3bdcc17a0b1c5ffd1c5c70b721e0b79c4081161aeef560967b9f97f7db97d",
+                    "size": 742,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2b3f043d1e7587e5f16b73827537770c4585874fdd581b7ff33549dae8988d6e",
+                    "size": 1434084,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:78d8d98a51e5f8ded2e78055508ed1efc135a0d8c0cc48338ce3e0433d9d92c0",
+                    "size": 68554,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f6364288d6fcf3ef2984d6bb0d60e3a3825c14d42b971d30940626851d731208",
+                    "size": 3335,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-djl-0.21.0",
+            "tag": "latest",
+            "digest": "sha256:98e4cdb0f997e32627f03ee0d037191645d34583e03c244edc6e6e105ca971ef",
+            "layers": [
+                {
+                    "digest": "sha256:0fb668748fc8bb961f4580895692ae741be788857ac2e8220adc2265ffb38e10",
+                    "size": 28580012,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:081d212013c9f81bfebf22085e29db7247d4dae3a2156ec0187349b221197e4b",
+                    "size": 3207,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:74e6c250d92b73e108587b855d6ac6a5948bc28beb8f53415b7599e3e1c9195e",
+                    "size": 131,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ec6c9718a52405e6d7b570525c1bb8b12eae58c564ecb333fcd159006288397f",
+                    "size": 263,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:67aab37cc64bd9e6bf71ffc829b2c4df7814de4b5f2532721c019660d249aa7c",
+                    "size": 203860347,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2075a8a5e200fa6c3943a20953fa532c33745c2e38f9c4fba4054fbb54599534",
+                    "size": 347,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e8ad145979f29cafd6d77e5391c717b991bc98100047897ec92f99d7a6afca9b",
+                    "size": 346,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+                    "size": 32,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:46ed3391450269a4aae00b5d5a1c9ef1d2267d2e60947a76f486f75c58b6ee56",
+                    "size": 5940591,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ecdbff52b7b781c99dcf07e3d124cd1ef196634f7bf89eb05d7a1e0af9f94d59",
+                    "size": 3255,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f8e416318d1d3e6eb9532e424daeb78fb9c46d33e41d777cca4ad209b94f2be7",
+                    "size": 432922552,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-djl-0.22.0",
+            "tag": "latest",
+            "digest": "sha256:be9f019777e96523859e1413bea8909001c95f32d2e0aed79d379f99b3339388",
+            "layers": [
+                {
+                    "digest": "sha256:7007490126efaae58924972668256aaeb4858e6c4537eb4257e1978719b958c7",
+                    "size": 28580671,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d6d59a45a81eb0bffecc4959ae445d2ceb3092d937190a652369adbfcc8d32d5",
+                    "size": 3415,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fbd24fe4c29a2aa7167cefe9c45826d2a158dd7dc07b25ecaaac6a88f3d570b6",
+                    "size": 158,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3ce025fc25cba8af3e2d896064c2bfcd8fa7dce097a7b2e79c2e1a27285db2e0",
+                    "size": 264,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e6333bae2326990f0cf1f85502ecabb4f9189adab0756522c499643c805c8113",
+                    "size": 217132645,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8e14159e11aa5b938b25e9f59b1a3f8a4e411b1afc134fe73b20778c6d2a0cb4",
+                    "size": 357,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d8fe6fd682fbe6009a8bb61330c5e0df53db7f35602bc27cdc4735fbdc080d50",
+                    "size": 355,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+                    "size": 32,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8d4f317d4448a0859306fbd46505539c4a17b16509929ce4436cdb4f31b982af",
+                    "size": 12916279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2dfb50055bf6e90249c96316fe39abb1aa677471216bde731b7121d25e60ec3e",
+                    "size": 3464,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:597d39fe7f5f3caa198609876b247768e49134702e4e744ca7b72e0096e722fd",
+                    "size": 832882596,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-djl-0.23.0",
+            "tag": "latest",
+            "digest": "sha256:8f6a52b9fc30e760b3e17b69b8927d49a7bb1216dec04473440c315e3d7fb163",
+            "layers": [
+                {
+                    "digest": "sha256:0fb668748fc8bb961f4580895692ae741be788857ac2e8220adc2265ffb38e10",
+                    "size": 28580012,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3de229ddc0d995b6104bf41a1e6fc0e33a0a1617eb0e841090af854ae224767e",
+                    "size": 2947,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cb7aab56b6571a2b174b62643eebedc6e6f29e838c2d532ffc1120b8d14f64f5",
+                    "size": 159,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f1f5d683863f95cea82f24667ca06abc5127fa4c27cbddaeb2827cc21ae99093",
+                    "size": 263,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:55ed0466f495282fe30bd5434e5270bdf0a7f2d6b159946682f3c0b7d7e472ab",
+                    "size": 226135420,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:45951b8e5a8cbbf6ca18af6dd4fe981947b3ccd282875389f99af7dc9b3fce8c",
+                    "size": 360,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:746e2c3b02d5c6ea8db028969e50b12fc790437a16f8cd77c0cb9272c48f94ef",
+                    "size": 357,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+                    "size": 32,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:58572e1f449d759da5c7a6c6d019244f19656144de98cee071774b478c55d809",
+                    "size": 16031610,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:24c467ddada7abc8112f0117976d12f9c17e56afdf300d63f9071b2ad8bc7edf",
+                    "size": 2998,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2472d7397981353a90448891ff4862a8742c62878d2adb555831bc5bf31a855a",
+                    "size": 829867030,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-hf-1.13.1",
+            "tag": "latest",
+            "digest": "sha256:7b6f3d26d24341f63d51896a0e3cbddc4df8101293d4fcb362fc3b47946e60d1",
+            "layers": [
+                {
+                    "digest": "sha256:f0412dfb1aaea4892c13dab6f771bcd79641a4bdcb521ce881f5dcfc0df9a7a5",
+                    "size": 28580519,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d47c6ed12ae8855313710d867e41f31ba0bca6872c37b26f5cbdefd469635671",
+                    "size": 459868008,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5622d19c5bbe859507b105f5e5e8940ca9c41e6472b3c825a1973d08696b033b",
+                    "size": 225084,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:92112969130a191989bdc1904e1efb3db24e984efa36ab003a4a6551ffe13bf8",
+                    "size": 4194828,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:967598a4878e45908e5cdb0986d55107a2c3ac8a56643abaae5feec5d59b685b",
+                    "size": 489146183,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9203eadde1b3867c8471870893962a483344218d37a7f4579a32cd6ecf0cc5b0",
+                    "size": 5606222,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:94c3a776e3a0e8a5c7b352a5a2f7716d015a64a5a805357c5e39bdf7a45de99f",
+                    "size": 235861007,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:eeb1dd9bdf608f1f200300f802cd9c8d4207fc2fe790e096574ab9653341d25c",
+                    "size": 119892,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c7084ab3c2782de8d4f158ff983890f5f1ed02a60daca31c3f0975bb0a8318f1",
+                    "size": 49421607,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:18ed967b5f1691f7891947d75740975b26e9e7aa504fa88f3fc74da573e783a6",
+                    "size": 4661,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bd746910b374f5c3e5ec68f891296275ea84aa9998eb392bf5d482861e165c3c",
+                    "size": 747,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b6e277058284d904164ffd3baea46350ca88a0195f8b8e52b785f9bc721c639e",
+                    "size": 342,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:29040010e88fb25f85b91bb7765aa210bc3980bf7531bc3821cf153bb62d5c9f",
+                    "size": 746,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:234ad590b9658230fc841a119092e3c39b13167d879cdfbda2fd1ebd400dc812",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a8a7df3b44504c0538c61af309fbed6e25187d74305e99010cd65ca4833c0c65",
+                    "size": 3500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3ad19e5014e4987d9fd43d4fb344f45a7d97aa68fc041f29f1ab84650f2d959a",
+                    "size": 1527,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d3b3ecede1ef54752bbd183f8e8c0fbf5e5497055e5a540413ae10723bee4387",
+                    "size": 176418955,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:054fcd1cc32d9d96143442ec514235d1c7a3ec337ed8008a72be34411ce81eeb",
+                    "size": 1588297,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5989ead7ea8f01d6aeb7a5e977fe578c4d2853d3811e548cad3ac4a312134e58",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8b73f0744a588198a8239be18d61aed497ac44ff8a9d045b27a3e81018cdbca0",
+                    "size": 1843,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-hf-2.0.0",
+            "tag": "latest",
+            "digest": "sha256:249c389d06de80a677b5f5e5405996bdbb79141ddc763120bc49c716719797a1",
+            "layers": [
+                {
+                    "digest": "sha256:0fb668748fc8bb961f4580895692ae741be788857ac2e8220adc2265ffb38e10",
+                    "size": 28580012,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:46773c7ff7b087ffe4ff74155468437a276576a0e373944c9f376b701f2f4c4a",
+                    "size": 456959390,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b89112d24ed63033c81d626d1db6ea54570788a01645ea8eef78ab485c3db91c",
+                    "size": 225083,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:07d736489e79ccb357376b6b888749e9e56bfaabeb66159c25da44c3aefef3a0",
+                    "size": 4195242,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4f843a002060bee9dabe06c6c2501ec0e3bcc7536d3e22785ea90adf19715faa",
+                    "size": 492221751,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fc69ea230cab72cda463cef00a4b64ad7f06fc7bc5e63ef0ed9424991aa2dc40",
+                    "size": 5803831,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b91932dd78cc6b07184fe85450f378e269698899055842b44155d92d558437a5",
+                    "size": 161591689,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f0311d1df614689d9ca2c29174b973a8258e66dc87d8d43c8a1d05951429050b",
+                    "size": 119894,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1d88b5d84989e155e72883fb640c596502357d6fb57d85e1ef09bc50a5edb37c",
+                    "size": 49321783,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:10115a7625d87adb701e1f6c09b7cfbaca179c2b2d221f6e5b83bf5f0389b19c",
+                    "size": 4667,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:36601e286d4ecec519098bbfb2cba46a41d77659ea1be9831ae6898c601117c1",
+                    "size": 748,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:666a2ea27e1c7464ef5c2c54a569590becba6f574ed35b761260917a11f0154f",
+                    "size": 343,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a89e2d80ac4f1d84f145b59fbd1fd5a040f40f00814e0dd3bd2ba47709e4bace",
+                    "size": 746,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d6b5e7e648c9ec2db04e8599f09074d473e8c7494591e7a5c35ce65b42b2897b",
+                    "size": 3502,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8c406104ff2027df258156a295c862e8f269533f5b926a1bcff5e25ed4afd1eb",
+                    "size": 3499,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c12ff60ac7d02aa2600acc54ebf085b1a4a2093dab41c876894a9480e901fb4b",
+                    "size": 1741,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7e2037f252924934097dcbf4ad1f0564ca80efba9677b8ef981701414ef69360",
+                    "size": 141031630,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:793b8fe94aeb2e2460ee514b2857592f284c29c6701b8db521278599ce3056e6",
+                    "size": 25315023,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:74e921a4dbde99b114a0ef23adaa392c1488c7961ffe62b3397910767abdc052",
+                    "size": 4688179272,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7d9b00eb9b175a32711370d56433933b98a5cda865010e2926917f289baf3eb9",
+                    "size": 19899149,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d755b088ab881087cdb8d0690b1e6bac3b01d8c077187e8d154e2d461a1fccdd",
+                    "size": 1620081,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:31b2ffc239c014d21ec69c070b23056fed189feb9145ade2fba47378919075ce",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f24d9893f77b47c95e87d2d107ca941d6b4ef9e45939b8338aec6bf31c1b520b",
+                    "size": 2016,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-hf-2.11.1",
+            "tag": "latest",
+            "digest": "sha256:91fa92f4933c813154e83eaf79cb946d2b5d3e7c637b15ddb3c5d780a06af6a8",
+            "layers": [
+                {
+                    "digest": "sha256:0fb668748fc8bb961f4580895692ae741be788857ac2e8220adc2265ffb38e10",
+                    "size": 28580012,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d043c4646647fb7cc2439beb92170a80a78165b301a7b18ba1e5f193a8c9227c",
+                    "size": 431566695,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:60e0f76ce5d5392352a459c9507d874afe1b29622509ab0b471f53054523abfc",
+                    "size": 498254804,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1cd750aacbbfb79357498380b8fb94add0790ee765cd826188bacfd68f2f2000",
+                    "size": 14711247,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:241f54548bdb0ead693e8396cdffc4cfad382876c149988b3a250b6835834efd",
+                    "size": 4190470,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:42054af93a7b52f4be0f36c77d73ab25e991c452a347aa61be05a9fd3442463a",
+                    "size": 64991269,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dd9e9b9ef2d790d591043a6a0d7179ff3653762caf8db453442e50fb1c310758",
+                    "size": 4600,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:43c68fdf289d89217765666149b093c114325128703b04d790e740807ddf2753",
+                    "size": 748,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:445f3cb7395103f1933427f99bc72f28b04306330cbbcadf18ee56b48fcd8c06",
+                    "size": 343,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:42ec61b7372bc63f30073680449528fe38517332fa51ce39e9d08072b183ba73",
+                    "size": 748,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5bba66ba7315aa6caf1433ad59fe1b080649aa9036d92433e56f4fd245284b77",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2a75788a320408df0dc9179928349ec796a504690743c92adcfafe21a65608f2",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b97a7f68f47fd0627cc66db83e9bb68761a5b2ebc91ef079c33a87e7cb43b68b",
+                    "size": 276781396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f0264bd2cad18d63593b39df8531fb7c821fec854b9d91c8898be40b5ec48f7b",
+                    "size": 136130663,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ba45fa57c018ce79752635c0549a274fef933089b8bdcf21821cf5cb9b179d01",
+                    "size": 1387119,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d270b23d59ad0b649fbd76d00f9588e3a5ed64b8789210182f787338314c1729",
+                    "size": 2105,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-mxnet-1.9.0",
+            "tag": "latest",
+            "digest": "sha256:322159fd77129ba67a0c280eb522fe3b3d8f7526f77cbe152dcaf57616d8e5cd",
+            "layers": [
+                {
+                    "digest": "sha256:7608715873ec5c02d370e963aa9b19a149023ce218887221d93fe671b3abbf58",
+                    "size": 28577884,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:916f2b2546e2eb10f37e281b434c174c5e66478d99249fff804f0c7773b16505",
+                    "size": 734749,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:797d9d46f6690a3756dfe3248360247daadecdad51714d4e49b7a8e359181b2c",
+                    "size": 473415221,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:25e9f56aec891b4e36697546d3a26a2123ac558fe8af7fdc38077a6295acc450",
+                    "size": 44784071,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0980503ecee7d6a9f5ceaf530e3e0c61b884d47fd5635f1ac6662c03281813a8",
+                    "size": 405167026,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f155d77591a7acf6e5d02517677d0e6d8725049ffd10f0e9f758a42f584d41ab",
+                    "size": 168397617,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:018baed1b1621eadf6dc03f081de6e79d9d69e658a3e25179bd33e14c4e6d2ab",
+                    "size": 4609,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e0b7076b90969ad53412c22c769991117479e0723aea0872da05c854fccd2876",
+                    "size": 729,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:310f900346588d3646ebc7771265ca7e1ccb76bd0ceedb1d13ea029faffe48b2",
+                    "size": 350,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e79d513bd070f3473479fab23f6c940b142e446855ba639df6e132c7951bd762",
+                    "size": 728,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:766fdb562f8998950a3a44bd05badc06ff64a50dcc49aec605c4d14798867d81",
+                    "size": 3397,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6158516ece3320b660d5a0cc13740b191aac498016c1bb8fac31fad2cda9a40a",
+                    "size": 3396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:060591c33951d908fe8f6639b762adb77946ae4d55a88529077ec37ff6bb72f5",
+                    "size": 1643609,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6b4d7b0343befaf3a7f29a573682ae070983ff328a0496ec2fdef7a90ec16cdf",
+                    "size": 291,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:04ea19eee06e24c0a403eb740739a4e24ab40964340217f8bdbe6604771dc94b",
+                    "size": 2096,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-pytch-1.12.1",
+            "tag": "latest",
+            "digest": "sha256:2837d560392a44d96f1e98e1546b7981fa004b4707f26a91af8a85432389110b",
+            "layers": [
+                {
+                    "digest": "sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8",
+                    "size": 28578563,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4b126e45f5702b4e37b763d580e4cdb26d93c951ae450440e264141280a78475",
+                    "size": 347,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:18ca79401aa36bec9a418467e6f02bff607f07943b0bddee6dea2c96ef26119d",
+                    "size": 556174449,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:984aa615243ebf65e4446785b8e6c680a659904e38ee697c0e43b977117d6eeb",
+                    "size": 203668,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3a2f2abe8b73f1d7f1437a51e1370209902d4c39bf63e1c359008b0b3110e11a",
+                    "size": 4036756,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6eb245e2511b74b56342e2b5b7b836ec58d25d35ff71d1a81b5fdad60f1a8516",
+                    "size": 469487896,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ad76913171e3485dad78801780c0a38f3a948e9fbdc1bbd09f1f1a0b2abac52a",
+                    "size": 177,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:65a725c6c7af646ed8ecacb34cd4437d7e6873c90acd92af2fb8a4b9fecf0338",
+                    "size": 374309470,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4c8d03b1365c15d2d5be155f349c4675160cf43fe5df9767989da53e594f12be",
+                    "size": 8081231,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6816f463a3ae503589f4b55682ecc2bc112e04e587cdbf8365b8551a21583a74",
+                    "size": 109842,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5c7f52f0ccc767352eedc77bfc8bb675e2c096427f12709b8e99110e7dc92fa9",
+                    "size": 72344681,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:df93fbb6f49616869058ccecf14e475a85ba10438fb215fab472179d060561d6",
+                    "size": 4673,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dfb374921d19ccf070b6b7815686f151220e6ed38bac9c86931e14ed6ee65650",
+                    "size": 683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:adc09bbddf93caa580318e5416410f9111fd560bca49cc60de1d3a6896151964",
+                    "size": 631,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1d9f2ada427e86628a26d38f1ae42d633caee3237de9f14c419b35053bb537cb",
+                    "size": 682,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7d8936f4911a06de0fd48e0e82c3fdb1e74d899ba047e76109569cfb5ddb5d4e",
+                    "size": 3505,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bd2c8936998adca2dc2a1aaaf4b33c15188a8029a903b5a2894b1cfebb7e4f0b",
+                    "size": 3501,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f393433d71d19933a2f86ae3cf556f70fee29e05feb858e9c834a894d17a7562",
+                    "size": 1326417,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f8e621a2435209e208eb74def6750d6be0400d2e4d6f0ffdcd80a0eaf1dfd715",
+                    "size": 1525,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:603f7b3cf18434ea5cd31807ce2c043593b6635f95e49bf954a48f90cc7f8436",
+                    "size": 1712,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-pytch-1.12.1-grav",
+            "tag": "latest",
+            "digest": "sha256:50f4502257a0e1464dc00515d1a9723e257d2032e1175de0215a21817c47fccb",
+            "layers": [
+                {
+                    "digest": "sha256:0c68957c744181d1b5cae80a96971c651cec74faeade53191985b92abff361da",
+                    "size": 27196161,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d258594bc5de45252920ff8308ace79b187d68e8890084ecc09abc8410238d09",
+                    "size": 591596618,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ecf5254f72007e0e9d3afe3d2e7eea4ae70a38aa95609f58db7869d57899cd6b",
+                    "size": 3001,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8ecd8c573757443d2e077544b52e61cec3d43cd6b9e6ad0fbb81ba4be8a619cf",
+                    "size": 203716,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9084646623ca5cc6a4545725d24f49c5dbe2545a2946e20746a697cb62706571",
+                    "size": 153658132,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d0012f7fa5f9c87a9cc1098cfa7d63a529ef258b8b7445312195e1a5010ed588",
+                    "size": 120012760,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ea15a4c8f578d8f1335a1c84d2fa95452ef7178e845c31cb73352d3f9b9e008a",
+                    "size": 106116486,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c50ede30bceb819066bdd2870b129d68414e3623e97363260786e61a20cfae88",
+                    "size": 26960918,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a9492ff601693fdbe93ef024bb54eeb7d7e5354821b06b25f239f4ed1a8088db",
+                    "size": 5078,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:73ab2db01cb6927315f7ca3193929e72ee99301697a96aea0328835a062d57bb",
+                    "size": 175,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e1a68ad7baa826ea60890b12888a3b36371493ae6d56b2776d036dd3f1db106f",
+                    "size": 4691535,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6c6c9c0c2e0f8f3b84e4c75876d0cf8ea802d105ff565120304319ac2e45a154",
+                    "size": 43966138,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ab32b7eefc8240d1aacbe79a4602045d986ac565ef3708d8d615b3caa643c156",
+                    "size": 334935100,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3025fd2991148283ca4710fc72b0cb7437e51a0566a4a08e57b9d2f722122ee7",
+                    "size": 8800839,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fa2cf4d303f47461110bf65ed711b706d2d782213607d3e98c9f2f3536383f30",
+                    "size": 9623086,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:52a7e6272bc70174a9e703bd970fd33d146fa7f301577e9e92db2f466301f417",
+                    "size": 11497653,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:92530962b88e2cf137f7791c838c4c581c6def112026640c01688f0316aa278c",
+                    "size": 118310601,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:297db006487208b0f335908500d794bc61ae888770fce7d871efe388f6f35d9f",
+                    "size": 78539174,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6e321273b9c126cc828d4f075c3817fa3de746d38a42ac436fc242db88023162",
+                    "size": 133,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d87e5569c28d02311cd0e40c40bb4b6b8c79ce3f4d9561e7707f6ce93a8d2afe",
+                    "size": 4672,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:baea998309b494fdb8a4d9f739e2f0390b4faa1e0d8aa356946650a0de0d0fe2",
+                    "size": 685,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8f3d6b470fe341bfe538a254c40a94ad6ba93eb96fa4d6f0f33f30cecf707378",
+                    "size": 627,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cc8d1d66b7366cb1f88a7cc9aa2bd09e5a07b9a2ed779615eb24c9c77cc90ed8",
+                    "size": 685,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:28f9948e3328b20df2dc0112e30482a6bbfc94f4a08f339b37b97dcc6ae54729",
+                    "size": 3399,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3f841d19f9f2a00ed1f824113d913e4e661d0828157227db14aa8d84e98535c3",
+                    "size": 3397,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6cce6abda0869e45d1d0dcadc240de6da83d2732e3ed4f792f6f42dd9136b874",
+                    "size": 1421975,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1edf5d6e6bb9dc75b2a2bd3a80d53183cb77f77f9369ff21a0a60c2b96ded737",
+                    "size": 1525,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:84b39245fa45b271acb144e9ae33aaf7a589f7d8f3240a7488a33e3ba3bc9b92",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b95fbf5b0f8c14d547ed8cd47ebc809face2a91b1499ee8cea23ac2ffb6bdbf2",
+                    "size": 2023,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-pytch-1.12.1-grav-sage",
+            "tag": "latest",
+            "digest": "sha256:ab7d9eb2f97fb079a44b72f1837b9aeaa4661c9707b0d44ad1f545146ab60974",
+            "layers": [
+                {
+                    "digest": "sha256:0c68957c744181d1b5cae80a96971c651cec74faeade53191985b92abff361da",
+                    "size": 27196161,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d60b18a8a404cf499d72bfde01496544bd13ec430924d4b502fd944a28bc6b62",
+                    "size": 591597758,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ecf5254f72007e0e9d3afe3d2e7eea4ae70a38aa95609f58db7869d57899cd6b",
+                    "size": 3001,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:36afa2c66680040e50d9c1be01fcc07ee394f85d82e509f916338bf65c475b77",
+                    "size": 203727,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ba4a72d00a7a595b5a9860d0e1e183c1e05c6e065720c23e804e981780d8198b",
+                    "size": 153658276,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b44adc5411ad6b0dba9d0856c566bac6089d237e6fb149d976ae911fd1def882",
+                    "size": 120015808,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:adaee8d1b372433f06da59555872619b3f4ff5beb90b5a69f280fc49116f5309",
+                    "size": 106116315,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5c350d67e9dd3a80c1cc80da1dedc05b2b04cac3dc389e9cd10ed676fd6b8f24",
+                    "size": 26960981,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3632fd706d87360108d228d28366ba89a46e5331d98aaab2ad1f36ea4a08ebd8",
+                    "size": 5074,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ab2ef1f118799e86b5e132906bf74f54b64fcd7176f12d30b12ee074052b9e06",
+                    "size": 175,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a26f21f84b6afbb800a57223ceb5dd01c7a4de3d405abad58178ff077d8f84a8",
+                    "size": 4691549,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:27c56c467eed45b6c1b4bb7ec84051617de255c36ccbcad3e117af0cf63ba4cd",
+                    "size": 43967644,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:63214257618b097ba128107c7d3aebb29eeaac7e83f04b18132481abee33dff2",
+                    "size": 334935076,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3eabb3b1487e2fb34473693f4ac50a96adb1ecf7c6a108a56baaa129ceb4c179",
+                    "size": 8800829,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fa2cf4d303f47461110bf65ed711b706d2d782213607d3e98c9f2f3536383f30",
+                    "size": 9623086,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4f99561ac820e8decb52120f1d538074c30a79d8729e501c351a02ec2174786e",
+                    "size": 11491377,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d23445edb0215f828ad6c4d3494976803629703613a1c2cd17b7f3bfaa1cb8a0",
+                    "size": 118310602,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:75a4b99d93c8ea1c23e0bddc87bcb70a5e1e3401cf34ba01968e2e3c753caad3",
+                    "size": 78539245,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f53ca6102548c06d543fc60f89c0daf020b0771c9260511cf9ddf0ad209235c5",
+                    "size": 133,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b8ce5d8282f883cac8be492dbb802e7748502a61555778b102a81d955243c33f",
+                    "size": 4674,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:baea998309b494fdb8a4d9f739e2f0390b4faa1e0d8aa356946650a0de0d0fe2",
+                    "size": 685,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8f3d6b470fe341bfe538a254c40a94ad6ba93eb96fa4d6f0f33f30cecf707378",
+                    "size": 627,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cc8d1d66b7366cb1f88a7cc9aa2bd09e5a07b9a2ed779615eb24c9c77cc90ed8",
+                    "size": 685,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:28f9948e3328b20df2dc0112e30482a6bbfc94f4a08f339b37b97dcc6ae54729",
+                    "size": 3399,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3f841d19f9f2a00ed1f824113d913e4e661d0828157227db14aa8d84e98535c3",
+                    "size": 3397,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a312fa348f45212911b13b8aef25c1e0dcc22cc77d8766896d6c022f0f5c1129",
+                    "size": 1421971,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1edf5d6e6bb9dc75b2a2bd3a80d53183cb77f77f9369ff21a0a60c2b96ded737",
+                    "size": 1525,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:84b39245fa45b271acb144e9ae33aaf7a589f7d8f3240a7488a33e3ba3bc9b92",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bba7e41b688492573b793ec629e87fb4151d55bcf3b63eaffe587f9878616a3e",
+                    "size": 63541,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:867852c196140197fb08b6d0735489e15d37372ae1f85b43e5d35a559a3cda83",
+                    "size": 743,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7ff1809f0f42014440608f0634f2c369b020f1f602d3044b01e6b5396d9b2bd7",
+                    "size": 742,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c3f87d958966c3662c1a54d192c699856bc4427003ceeab2d7f6f2ced175a956",
+                    "size": 1426233,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a211bc93324ff190ece33d6f195f67d67ed9f6e54dd5ef73efdd169923c220ec",
+                    "size": 2067,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-pytch-1.13.1",
+            "tag": "latest",
+            "digest": "sha256:0d4a1dd381d1f11ef673bf7ef93148ec110f0ee309da7e16a25c2536e5daa497",
+            "layers": [
+                {
+                    "digest": "sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8",
+                    "size": 28578563,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cf4f9ca173895801e39d7dac1335039b6700e8acc90ee567778c9da2ae717aac",
+                    "size": 409636765,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8e76f05878397ef673f872c0468c691be54d3e6cb2a6049f2349762bed4d0ac0",
+                    "size": 225117,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:402747bd1456d182f55d73daf9dc94a5d717c4fa569765b7f7c2d37a656a122b",
+                    "size": 4194818,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:295623fbd1aa6a705e32729e31a7e0b70fc80560fa2331997dad77416ed35084",
+                    "size": 483226067,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b39a83d27b30673cd1280742acccb87cd17c3808d454d6bde12af5e324e18baf",
+                    "size": 5606289,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c44c8afd4799622d9b3601d76e7200a31d74dc37b1546a383d48ee66a31f985b",
+                    "size": 365312617,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7e4a00f09d20ea320d27974999a083f2c017501d658f565fad80a302a1ca6093",
+                    "size": 85646066,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9af9375b216882d209d487907eb9db4538ec7d8ca857b28e129955d2ba688bb2",
+                    "size": 119894,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:313d867b27939fd137622f37910d66a03a373767ae66b245b1aa49905f613788",
+                    "size": 4674,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:640af8d62072d07a0d68d05002ac126fc81dbfdf205cc951ae6d3051d819898e",
+                    "size": 682,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:de02d55e8707cb45c23f609bc56775b0dd3e09e52c699c372aab0471c5e87545",
+                    "size": 627,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e9b497471838848781fa164027aad239a4a53fad8e170015d1519be3630c9b04",
+                    "size": 683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0eba7adf59cc7f5c98b1425e277b9c1d06b22101ed081419bb60fbfe34d9ad58",
+                    "size": 3502,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:db78386248ca9107a53ef1c8a4c2b0fa20ad319eb25d8dd63786c42faf3d4a29",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:434dedd71f3723bcd3ca7a75b735a600cb10b9f8d89ccb2a869381cadbb7c4d9",
+                    "size": 1346766,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:56739cd51bd26ca226ae6c02f70abdef3e6da27ef083a236628d2db73807b5dd",
+                    "size": 1526,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4d563a464908b9af49f65efb7b011456528529d081121e4e33be135a2d15b821",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b075d47fe66b2fa70e81fec522a4beaa9f9018c57b3a4c556243c4ac0d914552",
+                    "size": 1703,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-pytch-2.0.1",
+            "tag": "latest",
+            "digest": "sha256:9f71f4ed8357f50469c7d48638531fdd81596761ead3c8a4c22df53dd364223c",
+            "layers": [
+                {
+                    "digest": "sha256:7007490126efaae58924972668256aaeb4858e6c4537eb4257e1978719b958c7",
+                    "size": 28580671,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d952df543034ec537c62a94c92e6b7634439a64e6563a424d30fdc7bbbb635c2",
+                    "size": 396797570,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7d518fe00094b5c07c6c5e95bb0c7a08e53ad8eef13e48ead62a8660200957a7",
+                    "size": 4195291,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3e5d61751f41fd7c79c71180fa26168e9a11eafd37c8db0ab2d57455ab26f0ff",
+                    "size": 490206661,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:30ed39612a575fe4e372eced9ca71b99015d8d77a007bb53ffc49f5103007976",
+                    "size": 5804096,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a7d266db7493baa881617cbd1f01641c1557be2ca262254cec3240fc8357d2c4",
+                    "size": 131649890,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f3f52a26ebc578ffe709899681ec8efdd07f7458c8556bbcabeb61df0282c4cd",
+                    "size": 161998474,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dd887f040cf41f88c06433871d0343dc9a5f3fbbf8cbaa23245edb16e52008d8",
+                    "size": 67653743,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d3a151919ebd10e0a3149017ad4396d8f351528058598e2e296d90dfb63ef161",
+                    "size": 119895,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ec7bc059d47bcabfe3519e0e78cf50a4da3febb344e360db66ead8f71737c9ff",
+                    "size": 4668,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9c55c82a00e8f8973daf9a5930d24ef2ab905007c047362477b1fc4ba69208f2",
+                    "size": 684,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d79647c0c5efa5bdac961ed52a754600308d9459c8b8385f189d85deaa379881",
+                    "size": 630,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:25b2eca66a83c9bf57aed4731e07c3d201736fdbb260e42f9a1ee18c33c3b18e",
+                    "size": 683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:62df919fffa590b643dc31676c2f6dd409a468686dd17e2f1dbc686b7c9da4fa",
+                    "size": 3501,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a46b396266b1b175b7ff95318b55200a5794418c4f433e45aca7bad7609b994c",
+                    "size": 3500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3e0294e7c20f4337cd131afdefd052458061b39c71a1acd140d01d820bee5c20",
+                    "size": 1312109,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a17a34602ac53c4d2d8fa0eb630d7cdd899b3787016284865ce25e667483f1ab",
+                    "size": 1737,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a96dc62576c2012b6afcff991216cfa84032b8e9de36d909d86228049f5a1861",
+                    "size": 127,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a586a70cfb520d8ca38a0ac8678e668bd60a819bc93b765337cf0fca700ff0bc",
+                    "size": 1552,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.10.0",
+            "tag": "latest",
+            "digest": "sha256:a9d0cb0458dc50daf3c7a86b0070ffc79fb8b26ad1a33c16c00e767da2bfd2e2",
+            "layers": [
+                {
+                    "digest": "sha256:675920708c8bf10fbd02693dc8f43ee7dbe0a99cdfd55e06e6f1a8b43fd08e3f",
+                    "size": 28572685,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f0bfb19df5d3fc244570203bebdb9d03d19f9acfbcccece906a6e243a02e782a",
+                    "size": 208458794,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fca8c12b4a6afca8a0c90f4fecbe5484752516ad99d71514847088fca75c7dec",
+                    "size": 65855508,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:05554e455cbdd9ecd44957656b11febbdf60aa7125d9a28595074a3c5918769f",
+                    "size": 5652262,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:04dfda6ea010e4873edb9d48a7b30e36eca11b82501d2c84e5a951601374c269",
+                    "size": 30439558,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b9cf1c4400b3d23daaa1804ce8bd18365b458e3c5577041e0e2ffaa32f67e7cc",
+                    "size": 215,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:095727a88dd6018b5e8437758e403be7dd9f6ee85732fffd181ce47969ae307c",
+                    "size": 102803667,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9feaceb02db0eb69fbbb6e5c8f706b2e93de0499e26b630c4f549db8eda39e47",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b1373fbb46a3a7366d50aaa39b8617783671e04bbeca1518cd3bd012ad3642aa",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c72a89706107f687529dd076a2a00d65f36abc6fd88fd0b8ee3b7fdbd17c2c35",
+                    "size": 3072,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:27f40c7b9ae4cc43ba9a03af7af927bca2c587836d32549d4b6675dc364cac5b",
+                    "size": 3071,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:65acff9f039132c4bad541283f6c0c1e4a3538487c1b2258a637b27764349e9f",
+                    "size": 966249,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5a75e765d1e85d53d01017389c463b589c40f643c9623232f1173b2dbb59a1dc",
+                    "size": 295,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6725a32e411cccb2dc1a6e9db682c06a2f946e0807bb70256cdfed4788616956",
+                    "size": 3509817,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1adb7113cf6c18b6d8b3ff74a592a589ac7a6a4b388ef0aae3ad5e9c7b04b9f4",
+                    "size": 8912161,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a21fe4be4906954d346cb34263d3dc6fdae51ebd1e554bc25b3d74667b8bfb98",
+                    "size": 14113,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0e1f92cea849c7c5897768c2e3aae95d3acf727e82dffb8c8db33baf393d16f5",
+                    "size": 914282,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:86ca09e39b42610ae0868e76d5bf6121dee5b9e14b0758f755b8fc74bfc63100",
+                    "size": 854,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.10.1",
+            "tag": "latest",
+            "digest": "sha256:a00d3fcba9998a9661aaa540fd7d3bfbb7b974f5e603bb5d6314fdbd16651439",
+            "layers": [
+                {
+                    "digest": "sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8",
+                    "size": 28578563,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:64af0d6817b02a08e5493fce856d14b1f5893b347809a2a4502996052460d2f1",
+                    "size": 344,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6a3ffae90997bb4cf3a930abcc6793867fcd88818648ffc9655053e00b162dd4",
+                    "size": 208526251,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:25e4004357edfb8302ad683772016347adb4b19feb96226b5943854cf612bff8",
+                    "size": 65852796,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:16082d8ec4f92e735c60a18124b7fd6a731a24d42dcbc8bf0dd0988ab893ed31",
+                    "size": 5370990,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:393d984a390eaa8127be5efe63a5b4b6b4205e1543350663ff63ac25cdecaa27",
+                    "size": 32229523,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:25980d2a9435c379c63701ebb55c260d38c7bf3dfc7a5b830cff8eeebf9176f9",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f5d1e71bfb15d97ae64c599af502818787661590224ec9dba46878a38eed12f6",
+                    "size": 102808370,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0530f4b36c39ca31075f544b61686eb6735a4c394fc28eedff6f683cf5f38a31",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9674bbf25517288fbcd9f1be560ff27b585cf1bb99ebb658ddab3b60b43e003a",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cc53644246e5fdf09b5d289e017058ccf8c897ffcfc4741caf8c04b246f1af0c",
+                    "size": 3386,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c96b7d1a231ac40cf88c3a9c4359df03ec811f7daf8dcddb3e3edae5b35dc2ea",
+                    "size": 3386,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ce61985071741e760eb5d14db792dbacca2bdd1709a228a4d02a75b0ca3c5289",
+                    "size": 2292172,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e8ec035ebfda0495da3dac86f9dd462f5d0b6b2cf4f7a92a4e76cc656521d43d",
+                    "size": 4958,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a8da60f84aaef599919abc8bc4adfd751adf810075b80890e6dd285eefd47958",
+                    "size": 3717974,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c08b29b813f5c80b0d2b92c916468685c1854fa83708745650bd8ce00ef6db25",
+                    "size": 8912407,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bb1fb06af3b09de319972eb90db3419413f33ee1fcc0e47df5e3e24018de645f",
+                    "size": 16935,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:07c43f138ab689d66c8cb56ca4bf725e900d19337e3601940d1cde3ffd98ce9c",
+                    "size": 917773,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0281cf8c6c70119e0fa235fb00075d702ca3dfb21ce8b56e420058ee763103ce",
+                    "size": 870,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.11.1",
+            "tag": "latest",
+            "digest": "sha256:c7f39edc581e4c78184d560eac160abb34ff446a64d1abea136f3597dafa335a",
+            "layers": [
+                {
+                    "digest": "sha256:5544ebdc0c7b82aa6901eae124b1d220914d2629a9bde25396d7ee9cfd273a8f",
+                    "size": 28578068,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:818882c90f00c751d50e55b31793cd541290798b37218594b44c3e0da6f0505d",
+                    "size": 268990,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:39b2dbbc9661c966d95fc489975c4f987b7cc329db0a478fbc6d983c60704b44",
+                    "size": 208523185,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b013b2a654daaaf31ec686f42c3d3b2144d0aa4b9ddecdfec44a256774775775",
+                    "size": 65852749,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:21511fc4fd1cbd5ce99f10f58eece8d4a53afeb662c5effede45c85429e9e951",
+                    "size": 5352191,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d8c43ae463560125158a7ca913ae58c86c2ab25e264ba389dbca09d0bab66dde",
+                    "size": 32159055,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d461c60a895318373c61d1b75515825b3b03464bb5dff680606095ca790aef03",
+                    "size": 214,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a7855ab5c5af2af35441c67e1cce533f6dbd088cf75aad49e03c59617f1696c2",
+                    "size": 105620864,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:99463de961928cfdcad5a97ccb4594331c798281cff21d86e32fdf6f711eca2f",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:15e11b5c4fd25c563ef4e96d8706ccf3caa3b9e3a241af6ea4d50f4abcc321fd",
+                    "size": 277,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bcc7aece0663d6144b61df9670116fd2769cda8f3e19b71997861cbc55de128e",
+                    "size": 3400,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1d0cad7b5ead1366ba6674b56f31bc8fc115349130efb872ee57d57cce8af750",
+                    "size": 3399,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:345453ec6851e3a073524cb4d8407dd0a26f132c130699caad8219587fa50218",
+                    "size": 975000,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2784bdfc99d850247b4d6d10967fc8302a83c002ed9eb1c6ba94b9d85f1ed6b3",
+                    "size": 4957,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:86658f287d9fb924bf6746e5e6899da17719a87fd3a2e53cc9027ddaf5f15d99",
+                    "size": 3692011,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b7e2bf5f3b44ea89cead618495bb8426a46af88cf73c9912cf16c6005fb0e09a",
+                    "size": 8912423,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ab55532b6ee1fb4ae46549fc8bab0206b714766b90ab983b706f5d399ce2d5db",
+                    "size": 16761,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bf05f24f9b6f634c90a9f5e8cc67292c59861e7480a4d5d988760e754b9e93a4",
+                    "size": 917664,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:722425ec0819c0d37bd3a1ed41fb81a14f5fada609d71fa15411b2ca67eb9b6a",
+                    "size": 870,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.12.1",
+            "tag": "latest",
+            "digest": "sha256:9ae77a4b4006fde3e44f48d6e65322218458bcbf206d83516e11a69c5767019d",
+            "layers": [
+                {
+                    "digest": "sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8",
+                    "size": 28578563,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:97f0c13e96887eef228594bfd90570f5d0ab98658edf53c8cfc61aa6ef4e7b4c",
+                    "size": 342,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8d5daddf21edd05edc7beaf05933f3505d485ba018245b32026c573bdcc34980",
+                    "size": 208764097,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c80de5516dbc57bab6e7b5b47dd6af321cc1cd79c9fbd6cc93107ddbb9349fc2",
+                    "size": 72607413,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:74bf7ecc4a24f085465f33bb1efb7b48adecdd72c56c841d17a21b7034db9c19",
+                    "size": 5508244,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:007e08f7ff3e0c6a6ffe0554b4eef2f8f5b54fba702ddd68b270812aef46e154",
+                    "size": 35248607,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:deb09d4f4284c93d412f9105c155571469f0cd63e221a42e15f35ad6cc8fc6f9",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b779862c22bb8b3b422b3d0eab203ca4d592aa823f3c393f69a7cd0e57e6bfe0",
+                    "size": 109109612,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:438dca95920fcb52ba88968bbf293d49c8ac6479b7703b805dacd129049200b0",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:966ffe74715b21ae891781525b86d317735b49ba62a8cb2170be0b91b5b8763d",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2bff5527db14a8bcc3081ffaf21566129f44cbc58e60580705ecb8f342e65f6e",
+                    "size": 3500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d4e644cbd53cd69d6d202bff301a1af2b25aa6a7466ad60e7ddc5daae38c1a38",
+                    "size": 3501,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:83d3c64ff86af3ba891c54bd6078660a4030f4f2535d2088e4c6d9b04a6e33fd",
+                    "size": 1129136,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3c7607a09603f23baa24943337f12dc904e531c0c11d7f95c7944d4d7e636be3",
+                    "size": 4958,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6db276b52c22e28c6049da1cffe05b155dd2962794886439cb2f0d7196ca6817",
+                    "size": 3717972,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:947f9857aafe2e8bcde7873ad734ef98ec7e3f657d681c16c13ac0841e649e76",
+                    "size": 8989483,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:af7fb51f1fc24000975713cb9c1b0f2a6c2b753fbbbf26aacf11f2132464da6d",
+                    "size": 16930,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cbfd796fc40405c7c172fa1886be5dfeb4dd54126d11bf9aa24b8d707ea31a37",
+                    "size": 917109,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:767bee65519be2c48cb20be9a16e928b7c53f07284dd54f136fb6ad65c7e7505",
+                    "size": 868,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.12.1-grav",
+            "tag": "latest",
+            "digest": "sha256:2a24d9b157166c25eb45812ac30bb5cbf27ae883fadb32df11528ef60d50a91e",
+            "layers": [
+                {
+                    "digest": "sha256:2378679266ac5157323158b6e52e7a884e559db5217037e57992e47a1667d525",
+                    "size": 27196396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7b420708802e95473d68510ff920980c957863f28eaa2f1e3b8e7249b94fe137",
+                    "size": 200115243,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cb5e860792355f7c9864825987bb2509cc2ef7569041dca93984d9bc92729ff9",
+                    "size": 72167203,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7e92f446a887631e77a08cc80247de0f566ff6a54090c02d7ab6470f16003b19",
+                    "size": 5508422,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:394b7464f68abba63c19bcf02a0c8646abe17503a2e44fc2bc5dcdf1de66fbbc",
+                    "size": 90603745,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ef07aa7513c24df50e7ad9f1dafd19aef88bef3bcfbb5b493d9914eff6ddaa51",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:eea4655862f283b2141a43b436952fa8d6e180fce831ffc7f6aa75c1899a312e",
+                    "size": 112196372,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0f271f67e44431c25ad70833be5205d56a3705d873a7778fca6b7ba624c27a27",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f262b5a8e961d47de4e2fbf9ce1d3ebbb62bafc697b8496c685260ce2fbf2efc",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3be3d0f482aeaeafb74fe1b17cfa40fcb0d0e51cd4e157e03fbcec6f178c220c",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6aa1dc0730be6ea9c0dc9982353c60bbc9088114ca818bd7c255998eb00a4431",
+                    "size": 3500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b1d130ed41d478369c6853ff1bee3164455000d84505bcc410e3249667f4a046",
+                    "size": 1141629,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:293dc28c12236eb4abb6a4bc501fc4e2b9bea1d2c23a5b5384029f377a39398c",
+                    "size": 4958,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:931dc6b95a8f467d1672a43c48a44b8a9dcfa8de92e701a172bf8c4fd40eaad6",
+                    "size": 844,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.12.1-grav-sage",
+            "tag": "latest",
+            "digest": "sha256:04af04642ae5a9593b58476d62929758f701f43b8c1ea031f2e8ea01ba606af1",
+            "layers": [
+                {
+                    "digest": "sha256:2378679266ac5157323158b6e52e7a884e559db5217037e57992e47a1667d525",
+                    "size": 27196396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8a220b8c045c2b249904c9635ef5d540f78b62854fad889334f61b21ae1e20b7",
+                    "size": 200115063,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:961439cee36d9d4725358316b81532b5a290605d7ef3bdf306f0b7519a9fb43c",
+                    "size": 72167484,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9056b0adf7a6e0949a2e1592989dc57b1df4d830d0aedae5714cde72e81f80cb",
+                    "size": 5508640,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f33efb052f290a664046b7317a94fd012e93d0b0daf185b5e2859d1d74f278fc",
+                    "size": 90603752,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ef07aa7513c24df50e7ad9f1dafd19aef88bef3bcfbb5b493d9914eff6ddaa51",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:eea4655862f283b2141a43b436952fa8d6e180fce831ffc7f6aa75c1899a312e",
+                    "size": 112196372,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0f271f67e44431c25ad70833be5205d56a3705d873a7778fca6b7ba624c27a27",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f262b5a8e961d47de4e2fbf9ce1d3ebbb62bafc697b8496c685260ce2fbf2efc",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3be3d0f482aeaeafb74fe1b17cfa40fcb0d0e51cd4e157e03fbcec6f178c220c",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6aa1dc0730be6ea9c0dc9982353c60bbc9088114ca818bd7c255998eb00a4431",
+                    "size": 3500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ab8251a7dcb5dd9b18fc5d96024e632e4649960f738e69926a061e876f40c67a",
+                    "size": 1141623,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:293dc28c12236eb4abb6a4bc501fc4e2b9bea1d2c23a5b5384029f377a39398c",
+                    "size": 4958,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bb6fb1856c9574533ae3785f7f7d8c1c05f3a087494e0c78ffb07a05e7dbcd11",
+                    "size": 3778443,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:767159154a34141af943ef9495c8f8cce92ee904fed39908e5569edd4f26c839",
+                    "size": 9511909,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5fb45894735337ede77b859fb65303206957e9ac3368aeb96626cec693155031",
+                    "size": 16933,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b360772418828c4139c4fe832d8fa92ef02ab248ad685c47ecdddeb68f7faa01",
+                    "size": 904920,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8f4643630c724a94177fbda07010be9e82aba2b7fba7b002e4f2487324df08d0",
+                    "size": 872,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.13.0",
+            "tag": "latest",
+            "digest": "sha256:80ae08f886eb03dad58bcea918d7e8526c6df5c993067ff18266f4ff3ca6a170",
+            "layers": [
+                {
+                    "digest": "sha256:0fb668748fc8bb961f4580895692ae741be788857ac2e8220adc2265ffb38e10",
+                    "size": 28580012,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3bd30c84d479eda19a2243e89a28b1ceda64c1978ec91324db9499ce3bb03257",
+                    "size": 970223,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6133f05bc5c988d64dcdf3431256bef881a9840d06a3c8c46d91a49fae9115b6",
+                    "size": 208819264,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:388d8dff0214e34ad60fbf8aae874057be21808dd1095d0b0bb30591714048ad",
+                    "size": 72611502,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7a9ce601dab32bfe8094667e23ca8ad86520154ba39e1a5e37c67bc1ec91e779",
+                    "size": 5244872,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:afe90ce00001cf7bca9810c887b3cd1f17c5e507677355b1b079c6464084bf7f",
+                    "size": 33763963,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:54ba5124762cd61a759deeb49ac34dc82c6af953fb7e0adb900f59d600773ef7",
+                    "size": 214,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:96d4cc94d66cddc3d86bb27dffc6b265c07a046e0a3e86520965648067e72f4a",
+                    "size": 111243076,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:85beb7e7a74e3dffacb464eda7a273e5eb8651049c6eb3ea0bc1a71847adb93d",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:699d38002ccd2c5694fea2a64ece2734d7728410b0e55202379084e1b1867ba7",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:62b5eca662815b7c8212ab1cabed216facce650ba075871189ea84e219b711ae",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:72d8f2a18c40b32b6b1393d31259b30b26f72e08c67367dc4c499cf6463d6aa1",
+                    "size": 3503,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a97cbccda1e278671a8f2710bed8cd0ce3431c204986b31ea12e88b9da7ae720",
+                    "size": 2000947,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:90f54b83cd984248ee45fd3e683fa0e38d6566a76d2d1807922a58574d932322",
+                    "size": 4957,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:31251d9c8879cd2f9ae94a16988461640a1673567c0eec9ef9f1b4e81d1c89a0",
+                    "size": 842,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.9.1-grav",
+            "tag": "latest",
+            "digest": "sha256:8a3e24828eefa58e74f2495cceff4322d3eb8efb00da69371d32cae18511064c",
+            "layers": [
+                {
+                    "digest": "sha256:2378679266ac5157323158b6e52e7a884e559db5217037e57992e47a1667d525",
+                    "size": 27196396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:83df1b517bd82181fa39e27101ac2383306f610e526817231b706aeb6925feea",
+                    "size": 199842159,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6dde37474ce117b8d856c12c09e02216439e2dbedd8e6d312f67c96391c39313",
+                    "size": 63207197,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:068c1066cea749814d54a3c8fe1ace8c38dbc57f1bd99415d264bc26ab6457cb",
+                    "size": 5374336,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b7ca6af68b7c2fec46329ec1a5a98a43b9193c6ada55e2d68b241e5755f05884",
+                    "size": 78553617,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:50bc2dec9ba44bb02db50dea96f570d162c45efbec32df77e0a3f6c4be9de74e",
+                    "size": 214,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:32bfd1eca12b84ea4747edc60641913f3a8231205bedc1ea3b474e81ea5c5e43",
+                    "size": 133,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4cf4b469ec02c8add88844829a2a57e38637e699796b33395e4a92fe5668153f",
+                    "size": 101402000,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fcc02e413bb3583cd9edf53d9aa8d100d498a07faffcc17c29fbb8080e19e895",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b0ed0185d8200d4a4c8df7b790342e953388208706ffe176d18461c12f7d872a",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bf69dbba821a1ec6ab7a4f3bb47c27606aeba6f384e2a8832f30949eced1790f",
+                    "size": 3386,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3a57707eab68d4da3a0e6b9618d2dde25c8bbda179f094958afa102863e1d2ed",
+                    "size": 3381,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1dd09245ca36e0e119856d4cf94cbdd6e6c72e1cac9b3aa2c0b5f6e8d40c18cb",
+                    "size": 1146465,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:230512aae15463ec1e059ad9a49444cb4cea148428187a1e0f4cf32757a9c6cc",
+                    "size": 4954,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9c3c8d5154e85c0560f8bd0aa9129aa95eb49eb58cbb4c5d31e44c1d515e4190",
+                    "size": 859,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.9.1-grav-sage",
+            "tag": "latest",
+            "digest": "sha256:212eb9107f8c992e3304489e17998bf245a3a740880620fa47ea735226e94c11",
+            "layers": [
+                {
+                    "digest": "sha256:2378679266ac5157323158b6e52e7a884e559db5217037e57992e47a1667d525",
+                    "size": 27196396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fc17561d6362ee56bac313fd28c9efdf8681f1dbf91a58654e20ff693bee8251",
+                    "size": 199842677,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:29582aeb9e536779c491ccf08f89fe4af967350992751d5ba44046563571dc1d",
+                    "size": 63208517,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:197936be4ce5b04668f88283f729e537078fdfe8de3073f7a6fd9a2fc724a6a0",
+                    "size": 5374312,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:739b7e4accd33fd559a05c8c8b6c34dccbd8351158b7d6b779ae7d1546b16457",
+                    "size": 78549577,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:50bc2dec9ba44bb02db50dea96f570d162c45efbec32df77e0a3f6c4be9de74e",
+                    "size": 214,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9d86e9cca657573de396dd125a782496f8a06bcd72a73f697ccb7bf23c080c03",
+                    "size": 133,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4cf4b469ec02c8add88844829a2a57e38637e699796b33395e4a92fe5668153f",
+                    "size": 101402000,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fcc02e413bb3583cd9edf53d9aa8d100d498a07faffcc17c29fbb8080e19e895",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b0ed0185d8200d4a4c8df7b790342e953388208706ffe176d18461c12f7d872a",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bf69dbba821a1ec6ab7a4f3bb47c27606aeba6f384e2a8832f30949eced1790f",
+                    "size": 3386,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3a57707eab68d4da3a0e6b9618d2dde25c8bbda179f094958afa102863e1d2ed",
+                    "size": 3381,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:91b5867e9ae972b052ad6af6dd1ec1de232c9c1082af0de9f2acd4ad8267167a",
+                    "size": 1146474,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:230512aae15463ec1e059ad9a49444cb4cea148428187a1e0f4cf32757a9c6cc",
+                    "size": 4954,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2452b6574f792eb14ba03d604d526c0f5cf695eafb8ac549da79e086fc2ac12b",
+                    "size": 3778479,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7fa47245538d300e0ddd2c35abc15a26496092530ecb007ee55ad443a668e3c4",
+                    "size": 16931,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:801c1fe56b8598beaefb2adf70ac351c1171fb47e8423e5f2fb55cfd8641611f",
+                    "size": 910477,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9c3c8d5154e85c0560f8bd0aa9129aa95eb49eb58cbb4c5d31e44c1d515e4190",
+                    "size": 859,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.9.2",
+            "tag": "latest",
+            "digest": "sha256:404658239b3b9f2ac2e27075530bc633e3e73297cf9991703a2032332980a4b8",
+            "layers": [
+                {
+                    "digest": "sha256:eaead16dc43bb8811d4ff450935d607f9ba4baffda4fc110cc402fa43f601d83",
+                    "size": 28577834,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:da35cea140578ae99f26ff654bed556450e0003584f86d5047c0850585acd039",
+                    "size": 1405132,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:29310105a5d4755c0b040048bf9a977acc4b752549bf6acdc8546b533645ff16",
+                    "size": 208483442,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4f2b36f42d1c9a8b63b67839a5c10569272ee746df77695430f4f5db2590e973",
+                    "size": 65853493,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fd5eadbf300018a411f1fbf519840180260bbe0bfd3e38a4071d250de1e654e7",
+                    "size": 5674660,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:4376053988b847583541e3540e8e3aaa1e91b36bb7e0aea847e584444f687584",
+                    "size": 31677506,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0b7039442394e69ca8fb89f6c692204a33e24a6fe778dc00f301cf718f752415",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ccf820309d491849cbb8b11dcc6c0587ae852545be07fb9f05343036d43fc018",
+                    "size": 98463906,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8c8da3565e287fe4c168c0a574060db7448e5f23b9aa489f55c8d077c1483575",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5299bbf42f5caf2e05843e2a6670c318d18830a93512441dfe70e6cbf0443228",
+                    "size": 279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:91263db5e857f70f29aec53fc3e225601780a7dc05a845e53dfb525a3dc10435",
+                    "size": 3398,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:508fe024a736268630e7536344aec4e3b9a9626b4dc017bca9a3ac1b150dc20a",
+                    "size": 3396,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:02fe71f24733510023fd4b11ee192aafe1febc05799c324d694f9427f04410a7",
+                    "size": 966661,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5665978fd7a7adf3cc07662aec601d448be648bd287525102dd0a0ba604fa586",
+                    "size": 4957,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8fd83e54f7698980eb3c8c479f6dcc009c49c43fd6db7cd64d6610e7d9d51e5c",
+                    "size": 3574489,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b30c8615990de169da5e78bcd77ac323a86fbe3cb9a3f4503cd5c17049fd8987",
+                    "size": 8912298,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:390c06b6b3a1ee5e625e83fb474122c276f13089a29e65c84eb5e2d9c992619d",
+                    "size": 14114,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:83cc13d5d7161e93088ba6198e566bc7f290013cad61c9bf2e386e3686d49db9",
+                    "size": 914377,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:bef68372079c9a8d292e61b0040e1f4c89a39432c09d51bf851df518f4ef292d",
+                    "size": 886,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "aws-tf-2.9.3",
+            "tag": "latest",
+            "digest": "sha256:2463cd01bf369c7a934bd3163fc9108391b7ab0a53b2afa238b0128d31a6f17a",
+            "layers": [
+                {
+                    "digest": "sha256:99803d4b97f3db529ae9ca4174b0951afac6b309e7deaa8ec3214c584e02b3a8",
+                    "size": 28578563,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:419ff9d2c999404127e69cce02a141cf4638ea24c26f44875dbc8411976f6ce3",
+                    "size": 347,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dd52262cc8bdf5d9d69625df7f3271406f4633cb13f4fa0ddcfe3349b4762343",
+                    "size": 208527728,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:967fcf530a00f691ac54ee779ff55e9b11b1d4b13df675fca7af0535fd16ff2c",
+                    "size": 65853832,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fba47c8b5479ff2007da91793a14e0d0ddc19cd92cf630968a39b4cce834c53d",
+                    "size": 5371037,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2b6d9776884ee353f02a2e40efbafb33e3c257f643c079037cd056e40db4c455",
+                    "size": 32145044,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6a01ba979fb4e8dbf842ad5db2c3d20505c62796bef81413d049e8ed9c6ad956",
+                    "size": 212,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2619bd0b46beecdbda83077ef80d4dfd7fe8c738f3b36d78961efdfc42a7cbd0",
+                    "size": 98465548,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dd294e852a34c0039e80ea31d95cbe9b36e9f01f15048b71529d3074dfcb75f7",
+                    "size": 129,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b682e81832b775c6e585671bf20132d06cf1719d75e5f368227dbb84a62d3647",
+                    "size": 280,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a45e44dadce3eb939bdac1e53ffb4c72f7a2f46631160ee8ca91764fe52e14a8",
+                    "size": 3388,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:034adb3a65f8be1fa8c0a57d4a56506e6e50e9a9cae7e66d2ee6d6bc89b7dcd6",
+                    "size": 3388,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f7d1be53a6531c270c3396a7b112bea330846c689d3a1e30dc5d9e1c585566cb",
+                    "size": 2288974,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3510fc15c391d5dd3e0edea8eb6054deb3309c5d491422e7984fc2a05acb8253",
+                    "size": 4958,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e8ee2dbccc904b1bc12fdd47281246941b3a9cfb1620a3060244207366a3f537",
+                    "size": 3717945,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e95437b2a147e40e9530f608cb53e696b742d95a4fb6edc0e5324208652cab12",
+                    "size": 8912178,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:350aa8f47c2bbf5938684d6c5134bcbf7877ed2fa13f9a788715ddd62e2dc07b",
+                    "size": 16935,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1b06b5f425f9c035bc655dee7679196ff2a846a74f68c8ff19705c329cc6a4ee",
+                    "size": 914553,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:70b3a963ce9de94c166f1d5d2ff8e71477fd0aac5365b3b1e4315a642e06db42",
+                    "size": 871,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-minimal",
+            "tag": "latest",
+            "digest": "sha256:ff2c5dfbfcce549a492c6d566106d702aedc9fb37a4dbd7fcccc5e48ca7d9aa7",
+            "layers": [
+                {
+                    "digest": "sha256:456d651ccb276bafe702e453add4a4f15b511fd3234cb7db898c22540ad3c8c1",
+                    "size": 26711594,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:47b863140e2a0930017e68b4c96fd63857b3cb8fec02a051b81f6caa2e580888",
+                    "size": 102392296,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:703416ecd902e0300420d6e24f982f63e573a093db0089f01037a15eecbb8453",
+                    "size": 8101,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9c61c334da5c32a724e076adb11d9e1444be26ee5308d7c614ee2283ce3e30b6",
+                    "size": 214,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dbb1dbe6e99e475aa7ce603b279fdd225a9ae3d2928bb95d51819d11ae4c1b12",
+                    "size": 1165,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e69e3119e870b9cf597f9d9558bb2e73a0ee4b073f8559525e66dc2b1e84b367",
+                    "size": 347444,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:dc5101dd6c2d1e297ffdc430777ab9dc7727df69ee70ce6d8e534af07d66418c",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f044431d6709d820fbc4bf5eeebef66c1c5346ca4da25bcbbee4d0aa95a5926f",
+                    "size": 4598,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:88091276baadcd51d12cf5a1c9df76df872b85f546fdec295a146d5da1994720",
+                    "size": 54298,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:29c65afd67dabb3c3cf7f562b8ae700d33ea6a9aa5003056f3dc9fee97bf14ca",
+                    "size": 56290362,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:da45a977bc7fdc8b6eae6a2c1950ea6131b2aa24fa6c46d6a57bb8b716962c54",
+                    "size": 240,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:909f9beb5681c263dad5d7f67f9d718ce98cedf34d59f4c3429a47682422934c",
+                    "size": 2801080,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2e00b5434c340ae7db601c1e5bff651f21cba00f29b955a2d1c2dc2403fd3082",
+                    "size": 78432209,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5003c8bb108c5d9eb0d73f642583d9f31d5e3c3052f5408216c904b0d6447c1f",
+                    "size": 1038,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0f675123114a429c1cb97cc7a306eff81c76f73e26a0a7344204803fcac1f8de",
+                    "size": 382038,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9eaaa70e03effdee098a0e34f97c2ca2e7bbd09392e27869a1f73ccbf402d64e",
+                    "size": 164,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-onnx-1.6",
+            "tag": "latest",
+            "digest": "sha256:90f4f9d4dca329aee118973fa22ea2deb1c50a8af9b72253897d3a30e8be28a7",
+            "layers": [
+                {
+                    "digest": "sha256:cd150c608fee7837e3a5b28be5c7b540eaf4efa27b3b755d55326470691ce2df",
+                    "size": 26710746,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7e57a8913d7eefaacf2b795ff4075f058c586a68d2dd4472d4d9e9e7be35a950",
+                    "size": 102393872,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7d6af3473e6a5a5f9727f536e748755114b633c923b6aac0166ba841806a9215",
+                    "size": 8097,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5bd815e53a78e7b0ba3eff0f99689abda977e1d361ddaa30601f15e567e729bf",
+                    "size": 212,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6fc81b6aa66a50554235b82ee30798cfc339970da4a9ff5ffe2a7b763fbb84a6",
+                    "size": 1165,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7daacfc62dc52754a571b56e44156d6a195151945b48e3192808630210ee683d",
+                    "size": 361380,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:66de7e66c757c3e4c02de1c44aa98c47baff12b5004806f13f5804a25655e9cc",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5f9cdd3c18195856130fc8066f59e36487bebeb3cf7ecc39826669bed9dc8c30",
+                    "size": 4597,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8d68e946c922dc4fec769ac1bfc4dd953a676d3cb63efc329b99b54081ef5dcc",
+                    "size": 54264,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:89eca72fb6866e33fde8c296b7fba44ad56181e3b5c32daab7fe603ef155af48",
+                    "size": 56290602,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:98f0cff2e0ac27fbf28765de88751b9e20230e3f2098b6802d841f2d6e9969c0",
+                    "size": 276,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8aeb1bd6b4a960e185b7f8ddaf3f5f9941c61ce4c9395b797d352de627f93e54",
+                    "size": 2801023,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8dec4ccdb5b8ace548ad5bcbb56a1458ce197d4c36a67d349566400a5aedf234",
+                    "size": 119669330,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cb31121297a06b0bb281c20292377b35264e0f7d82ab6d996d23fffaebd0f0c8",
+                    "size": 1039,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:74f95042f4f1d44f4f76c6ec69bab59df721619f178a416c576cb936acca7961",
+                    "size": 422020,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:58da0837ab0c5963065f678da74ffc7d4de524b207432aaae8603a962b45a3fd",
+                    "size": 167,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-pytch-1.6",
+            "tag": "latest",
+            "digest": "sha256:a7995b45ba810d49df324f886dedac430d7eb867cb81e2db66f73b5709f8225f",
+            "layers": [
+                {
+                    "digest": "sha256:a055bf07b5b05332897ea9a464c5e76a507fafe72fa21370d3fccaf07d55f360",
+                    "size": 26711442,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ae5345d1dc0c26101f114fb2f80e851301755fcdcf8c120c3bc03d14e852ccb7",
+                    "size": 102395357,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2936e5eeb5b3fc12dded49fd83a2c92dfc99c2c116902848f3ce64ce3714701d",
+                    "size": 8098,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:afa1c3990bc4b4427fe3b1754345183964c7f5b8d6d490104785c35bce406c1b",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9b779fb6c5775137f2fe8c62d08a773dfee672c151131c556fb7d6934bf5bb5c",
+                    "size": 1164,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6869a2cf4abc431c6401234ce26387b6ae3be907f5db1e3e6fa8dbaf99b5db1f",
+                    "size": 352874,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5f7357d3efc01243609bb09cf12321d43b3bc7a172fa3e9b828cea1d20153949",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5025474c6ec6f01853d3eb0d5090a88ab91cd707c6634e24a90f7a3e6c0f5b2e",
+                    "size": 4601,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0192a92f5c683b5fe0cea3a159326f8bea893c1534de1e0f505bf9a231f83dda",
+                    "size": 54309,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5a09bd19070c95f5eb595aa15dc55ba98f9f38a5633e95bdf15a66aac6947188",
+                    "size": 55861370,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d5ffdc8899067f17db9b724e599666ac93d8c742fca958d11ce68eba7b57ecfa",
+                    "size": 325,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:e44eb279ab11dca08875b3ab55f7cb6f10c7ac7545f5958ed63c149c7b1ff496",
+                    "size": 1908623,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:13e35d2fc9acc4584eaae2df62fab04d3e486c69b3929128b17d84917886acd5",
+                    "size": 270571462,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5817e173df9b4d017b7659d32c2e761fd3a55c039799bf53ce69adb63deb9e84",
+                    "size": 1039,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7f23e578bcd437a897ff4eafe635b2479965906c2ba1861a4c3a6e898481b3d0",
+                    "size": 420099,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8d04f334d481d65ea51adb092dd410f917f5985c6f503e8e62a95816d2ea34df",
+                    "size": 166,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-pytch-1.7",
+            "tag": "latest",
+            "digest": "sha256:a57ccd5f29ef0279ea07bcfe2d0e99b1a8d6a122442cd34d0a3050f2d287006c",
+            "layers": [
+                {
+                    "digest": "sha256:a055bf07b5b05332897ea9a464c5e76a507fafe72fa21370d3fccaf07d55f360",
+                    "size": 26711442,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ae5345d1dc0c26101f114fb2f80e851301755fcdcf8c120c3bc03d14e852ccb7",
+                    "size": 102395357,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:2936e5eeb5b3fc12dded49fd83a2c92dfc99c2c116902848f3ce64ce3714701d",
+                    "size": 8098,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:afa1c3990bc4b4427fe3b1754345183964c7f5b8d6d490104785c35bce406c1b",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9b779fb6c5775137f2fe8c62d08a773dfee672c151131c556fb7d6934bf5bb5c",
+                    "size": 1164,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6869a2cf4abc431c6401234ce26387b6ae3be907f5db1e3e6fa8dbaf99b5db1f",
+                    "size": 352874,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5f7357d3efc01243609bb09cf12321d43b3bc7a172fa3e9b828cea1d20153949",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5025474c6ec6f01853d3eb0d5090a88ab91cd707c6634e24a90f7a3e6c0f5b2e",
+                    "size": 4601,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0192a92f5c683b5fe0cea3a159326f8bea893c1534de1e0f505bf9a231f83dda",
+                    "size": 54309,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5a09bd19070c95f5eb595aa15dc55ba98f9f38a5633e95bdf15a66aac6947188",
+                    "size": 55861370,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:a07c4e320be51ed22814ce6ec602edd06204cf1d3da7a7151bc8a0ad50d7f5d6",
+                    "size": 292,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6872e94d85da45c570cab3276492f01f7288955760082c02e8c3addd94ecbb38",
+                    "size": 1908676,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6d7249fed1e3cc571f8dc556340603ee4db3e01ae9331b42aa9737749afb21ee",
+                    "size": 451573635,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:879753ba1d99303ab2de48346ee2ba08b51b3a379031d286986dcf71a9d6785c",
+                    "size": 1037,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:50ab5afce52f306720511a29d7fcd728c0befc8ba22b092b0ceaf85c72ec2db4",
+                    "size": 392226,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d4ccac9fc5b6f506ad694eabc578b7f6b66641d47c8409fb1f35787788b33e51",
+                    "size": 166,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-sklearn-0.24.1",
+            "tag": "latest",
+            "digest": "sha256:13b8e900712602707c9456666395643b73e029b9194e55940bbe41b158ce2a03",
+            "layers": [
+                {
+                    "digest": "sha256:a404e54162968593b8d92b571f3cdd673e4c9eab5d9be28d7c494595c0aa6682",
+                    "size": 26712500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:aadcad350b29ffb52721d5c8384a6eb38cf2d766f48795252df0609d2b49da72",
+                    "size": 101718440,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:18cf0ecbcc4cf18af380b44c081ed8a2c0c1fd1c9a411d03ad2fc5bf1af32648",
+                    "size": 5683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d770ba5245d3bad7eef12912ee86645f5c456b96c32b7310f49439afd9ca3652",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:516e284cb9f5a68d862b2e5a92bddaafa4ab55ec78574eac826c50ca6845156e",
+                    "size": 1111,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:426c8112ec6966292043d37b72d345e094ccbcda81d0d90ff4cb97fb33bed4f4",
+                    "size": 351466,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b3494fb855b79212a5a09667d1b74ae364aa1155b67f2acbd83076751b042f9a",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:268a6e115509a11afae17833e053dd02130ccf4cbd9fdd58ee64cdc0ba35bec6",
+                    "size": 4618,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:791daa6ac24e16597d8b387b9e1e489f9c1f47dc7ddc970c3257d049c98336aa",
+                    "size": 53972,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c7256d5b9820f686ffc302de6cd7d03f83072b11ce85ede183cc9dec2eab11c8",
+                    "size": 54803172,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:3183e4b6fb64a3bd8f9a934ce9d305ce71bfb10da2f6a02a22c94e71db0e6ae8",
+                    "size": 284,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:1ea0dfe3e0be60faa63ab9ef50664099e13922e3f97351ebcddcc5d96a75abdc",
+                    "size": 1151630,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9472a9baa22cd3c10491b7da3dd481ab6272021afd93a5310d42176aaba6de2d",
+                    "size": 173511944,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c34c7e65aadc82eb39862795b5772e0ae058ffc0d30c762e8877dcb773f310a1",
+                    "size": 1016,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:affc8887eee09a8e39de971dc925c4ca7293d418e47ddd19fdab76fcdadc3e2e",
+                    "size": 449938,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ae7cf779f2ec300edabfdb68c6d301831fda7f1aeed393454daa2c54b0b0c600",
+                    "size": 169,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-tf-1.15",
+            "tag": "latest",
+            "digest": "sha256:fefd8b1d110612ac6040754583ee7fc1f74882ad389baafe827586832ed92cf7",
+            "layers": [
+                {
+                    "digest": "sha256:fb668870d8a72b5d72a3b6d98ee626e00f9f7c29c6f4f7d3a63673d747dbffe7",
+                    "size": 26711459,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d1348a1d2f2f4cb5f79e47074a42ebbdc57ed22d35bcf164a0ee880f5ffd33da",
+                    "size": 101728855,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:652664e46a2cd7a7c015c0a21d85f1bd2e888b485eca63f81a83d4dd2f711483",
+                    "size": 5683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:88236e69bd82fcdc12af5178598b7aa908b4845cf01075e78ddb5f01c12728b7",
+                    "size": 211,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ad59ecb429282273b6b6d1f0ddf367e7eda36b916afbeeb4290e65875a5df1ec",
+                    "size": 1108,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ca44c2b4ca911915d1cf9308a42636e67470cb8a3db71dfbab65110fb224365e",
+                    "size": 351466,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0f55f47a47f70303e285419d9c379727ed7bf6f4dbbedb974b86484c88f95a6b",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7b8e988a0e3c0590841a1b6aa44bb56b8869d0c61c1017263aded013cd229406",
+                    "size": 4612,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:162bbba1088429b3ba2c6a4c4eb630d7cc4efe05a9d6118b773f2840fd53f657",
+                    "size": 53992,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:580f391f8261fe2bc109898f875e8a41ed367a67cbba2fc2573539805d3905a9",
+                    "size": 55861346,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:aa60c0777ed9d5b5c7f93efcb8e902b02fe307434dc6b967b41a3d7ac41aad7b",
+                    "size": 460,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8eb3f2dd2e2776403da09a22f8a7a47fc772392d3cdefe9912b5dd88a8a3a217",
+                    "size": 1908706,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7ae81782786d5f1af12dafc3ab22b29abf31dee07f9aefae09f2dbb18599c467",
+                    "size": 236230279,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5b37b3d1b51daaadba36adcf637e1b84ce92b8bdae0687730d9840b6c033b361",
+                    "size": 1017,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ce4194d8c23aa3ffb942389cfaba66cb495ebb75f20670baffd4d4e442bde306",
+                    "size": 496466,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ff025912470d0787cdd2b12eec987eec1e0a4ffcf7441e952b1eca4e137693a1",
+                    "size": 168,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-tf-2.4",
+            "tag": "latest",
+            "digest": "sha256:83b3394fa1cdbc2e2773395d893b5c91a6f27a4fe58bcf1ed9a9a251a6191e7e",
+            "layers": [
+                {
+                    "digest": "sha256:fb668870d8a72b5d72a3b6d98ee626e00f9f7c29c6f4f7d3a63673d747dbffe7",
+                    "size": 26711459,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d1348a1d2f2f4cb5f79e47074a42ebbdc57ed22d35bcf164a0ee880f5ffd33da",
+                    "size": 101728855,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:652664e46a2cd7a7c015c0a21d85f1bd2e888b485eca63f81a83d4dd2f711483",
+                    "size": 5683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:88236e69bd82fcdc12af5178598b7aa908b4845cf01075e78ddb5f01c12728b7",
+                    "size": 211,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ad59ecb429282273b6b6d1f0ddf367e7eda36b916afbeeb4290e65875a5df1ec",
+                    "size": 1108,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:ca44c2b4ca911915d1cf9308a42636e67470cb8a3db71dfbab65110fb224365e",
+                    "size": 351466,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:0f55f47a47f70303e285419d9c379727ed7bf6f4dbbedb974b86484c88f95a6b",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:7b8e988a0e3c0590841a1b6aa44bb56b8869d0c61c1017263aded013cd229406",
+                    "size": 4612,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:162bbba1088429b3ba2c6a4c4eb630d7cc4efe05a9d6118b773f2840fd53f657",
+                    "size": 53992,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:580f391f8261fe2bc109898f875e8a41ed367a67cbba2fc2573539805d3905a9",
+                    "size": 55861346,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:8671b7a2d4669cc04f0171b0fc964f15d69380ffc3bbe5cfcdc37dd2e23e4c1b",
+                    "size": 458,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:fc50b1321d3f86fd4045ca9e75b4c36bc5e5ac93ae8bc85433458e059089c5ad",
+                    "size": 1908612,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:f591f05269a615990bfc81350c083897b7614a53b9fd31adcfa1f465bd60fbf2",
+                    "size": 524645944,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b040b7bdc612d7bfc09f714c9df9ffc496b0fd2d500d321a8182f38fb23f0569",
+                    "size": 1014,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:793f67ee76d52e4465e02ce2d5fb7dce13aa9305154291d94d1f244d0c7964e6",
+                    "size": 489884,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:9d57c420be34d62dc787a1d7b176de5d4b0bcae4440a8e3ed3834602b6d9ff46",
+                    "size": 169,
+                    "instruction": ""
+                }
+            ]
+        },
+        {
+            "name": "azure-xgboost-0.9",
+            "tag": "latest",
+            "digest": "sha256:5e22eb513d79648590b97d656213eddd6e7ec7a94ed580513498a13ac63ec71b",
+            "layers": [
+                {
+                    "digest": "sha256:a404e54162968593b8d92b571f3cdd673e4c9eab5d9be28d7c494595c0aa6682",
+                    "size": 26712500,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:aadcad350b29ffb52721d5c8384a6eb38cf2d766f48795252df0609d2b49da72",
+                    "size": 101718440,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:18cf0ecbcc4cf18af380b44c081ed8a2c0c1fd1c9a411d03ad2fc5bf1af32648",
+                    "size": 5683,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:d770ba5245d3bad7eef12912ee86645f5c456b96c32b7310f49439afd9ca3652",
+                    "size": 213,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:516e284cb9f5a68d862b2e5a92bddaafa4ab55ec78574eac826c50ca6845156e",
+                    "size": 1111,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:426c8112ec6966292043d37b72d345e094ccbcda81d0d90ff4cb97fb33bed4f4",
+                    "size": 351466,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b3494fb855b79212a5a09667d1b74ae364aa1155b67f2acbd83076751b042f9a",
+                    "size": 146,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:268a6e115509a11afae17833e053dd02130ccf4cbd9fdd58ee64cdc0ba35bec6",
+                    "size": 4618,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:791daa6ac24e16597d8b387b9e1e489f9c1f47dc7ddc970c3257d049c98336aa",
+                    "size": 53972,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:c7256d5b9820f686ffc302de6cd7d03f83072b11ce85ede183cc9dec2eab11c8",
+                    "size": 54803172,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:5e8899e2d1b0470aa07a6c3b89f5ba994e5ab7bec4f0d41d7db3cc7e4d1c4056",
+                    "size": 288,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:b44473dc37ebf343bc6e589fca5bce608d42c2e592e6908142649c2f5985d9a5",
+                    "size": 1151617,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cda93d744b1135ff480a60708c298335a8352388624b67144444491bad0193d2",
+                    "size": 302869765,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:135267aa77b3e27a7a775072b3850ba3d6f0101b2c8ebaf364a7cd122b48ce88",
+                    "size": 1017,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:cdfd477adcf13769a9081b844e758acc1056a9f12f635a44ed70d3c1a0c7e44f",
+                    "size": 449944,
+                    "instruction": ""
+                },
+                {
+                    "digest": "sha256:6a3227ba02a1ecca947791450056235a7ff81f774d31321b018aa34ac255e92e",
+                    "size": 166,
+                    "instruction": ""
+                }
+            ]
+        }
+    ],
+    "applications": {
+        "random_requirements": {
+            "service_demand_values": [
+                {
+                    "cpu_demand": 4,
+                    "memory_demand": 4096
+                },
+                {
+                    "cpu_demand": 8,
+                    "memory_demand": 8192
+                },
+                {
+                    "cpu_demand": 16,
+                    "memory_demand": 16384
+                }
+            ]
+        },
+        "specifications": [
+            {
+                "label": "app_aws-ag-0.6.2",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-ag-0.6.2",
+                        "image_digest": "sha256:7b5ea1838e65f770591abe49f58e12db1c46de66bccd1cd97b0b57b608e9b925",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-ag-0.8.2",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-ag-0.8.2",
+                        "image_digest": "sha256:b89de6d2f2d9a66c83896e94ef7eeb89fa30515800edd0d87d1014e031369142",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-djl-0.21.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-djl-0.21.0",
+                        "image_digest": "sha256:98e4cdb0f997e32627f03ee0d037191645d34583e03c244edc6e6e105ca971ef",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-djl-0.22.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-djl-0.22.0",
+                        "image_digest": "sha256:be9f019777e96523859e1413bea8909001c95f32d2e0aed79d379f99b3339388",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-djl-0.23.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-djl-0.23.0",
+                        "image_digest": "sha256:8f6a52b9fc30e760b3e17b69b8927d49a7bb1216dec04473440c315e3d7fb163",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-hf-1.13.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-hf-1.13.1",
+                        "image_digest": "sha256:7b6f3d26d24341f63d51896a0e3cbddc4df8101293d4fcb362fc3b47946e60d1",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-hf-2.0.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-hf-2.0.0",
+                        "image_digest": "sha256:249c389d06de80a677b5f5e5405996bdbb79141ddc763120bc49c716719797a1",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-hf-2.11.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-hf-2.11.1",
+                        "image_digest": "sha256:91fa92f4933c813154e83eaf79cb946d2b5d3e7c637b15ddb3c5d780a06af6a8",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-mxnet-1.9.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-mxnet-1.9.0",
+                        "image_digest": "sha256:322159fd77129ba67a0c280eb522fe3b3d8f7526f77cbe152dcaf57616d8e5cd",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-pytch-1.12.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-pytch-1.12.1",
+                        "image_digest": "sha256:2837d560392a44d96f1e98e1546b7981fa004b4707f26a91af8a85432389110b",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-pytch-1.12.1-grav",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-pytch-1.12.1-grav",
+                        "image_digest": "sha256:50f4502257a0e1464dc00515d1a9723e257d2032e1175de0215a21817c47fccb",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-pytch-1.12.1-grav-sage",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-pytch-1.12.1-grav-sage",
+                        "image_digest": "sha256:ab7d9eb2f97fb079a44b72f1837b9aeaa4661c9707b0d44ad1f545146ab60974",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-pytch-1.13.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-pytch-1.13.1",
+                        "image_digest": "sha256:0d4a1dd381d1f11ef673bf7ef93148ec110f0ee309da7e16a25c2536e5daa497",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-pytch-2.0.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-pytch-2.0.1",
+                        "image_digest": "sha256:9f71f4ed8357f50469c7d48638531fdd81596761ead3c8a4c22df53dd364223c",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.10.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.10.0",
+                        "image_digest": "sha256:a9d0cb0458dc50daf3c7a86b0070ffc79fb8b26ad1a33c16c00e767da2bfd2e2",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.10.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.10.1",
+                        "image_digest": "sha256:a00d3fcba9998a9661aaa540fd7d3bfbb7b974f5e603bb5d6314fdbd16651439",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.11.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.11.1",
+                        "image_digest": "sha256:c7f39edc581e4c78184d560eac160abb34ff446a64d1abea136f3597dafa335a",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.12.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.12.1",
+                        "image_digest": "sha256:9ae77a4b4006fde3e44f48d6e65322218458bcbf206d83516e11a69c5767019d",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.12.1-grav",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.12.1-grav",
+                        "image_digest": "sha256:2a24d9b157166c25eb45812ac30bb5cbf27ae883fadb32df11528ef60d50a91e",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.12.1-grav-sage",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.12.1-grav-sage",
+                        "image_digest": "sha256:04af04642ae5a9593b58476d62929758f701f43b8c1ea031f2e8ea01ba606af1",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.13.0",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.13.0",
+                        "image_digest": "sha256:80ae08f886eb03dad58bcea918d7e8526c6df5c993067ff18266f4ff3ca6a170",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.9.1-grav",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.9.1-grav",
+                        "image_digest": "sha256:8a3e24828eefa58e74f2495cceff4322d3eb8efb00da69371d32cae18511064c",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.9.1-grav-sage",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.9.1-grav-sage",
+                        "image_digest": "sha256:212eb9107f8c992e3304489e17998bf245a3a740880620fa47ea735226e94c11",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.9.2",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.9.2",
+                        "image_digest": "sha256:404658239b3b9f2ac2e27075530bc633e3e73297cf9991703a2032332980a4b8",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_aws-tf-2.9.3",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "aws-tf-2.9.3",
+                        "image_digest": "sha256:2463cd01bf369c7a934bd3163fc9108391b7ab0a53b2afa238b0128d31a6f17a",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-minimal",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-minimal",
+                        "image_digest": "sha256:ff2c5dfbfcce549a492c6d566106d702aedc9fb37a4dbd7fcccc5e48ca7d9aa7",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-onnx-1.6",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-onnx-1.6",
+                        "image_digest": "sha256:90f4f9d4dca329aee118973fa22ea2deb1c50a8af9b72253897d3a30e8be28a7",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-pytch-1.6",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-pytch-1.6",
+                        "image_digest": "sha256:a7995b45ba810d49df324f886dedac430d7eb867cb81e2db66f73b5709f8225f",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-pytch-1.7",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-pytch-1.7",
+                        "image_digest": "sha256:a57ccd5f29ef0279ea07bcfe2d0e99b1a8d6a122442cd34d0a3050f2d287006c",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-sklearn-0.24.1",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-sklearn-0.24.1",
+                        "image_digest": "sha256:13b8e900712602707c9456666395643b73e029b9194e55940bbe41b158ce2a03",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-tf-1.15",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-tf-1.15",
+                        "image_digest": "sha256:fefd8b1d110612ac6040754583ee7fc1f74882ad389baafe827586832ed92cf7",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-tf-2.4",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-tf-2.4",
+                        "image_digest": "sha256:83b3394fa1cdbc2e2773395d893b5c91a6f27a4fe58bcf1ed9a9a251a6191e7e",
+                        "state": 0
+                    }
+                ]
+            },
+            {
+                "label": "app_azure-xgboost-0.9",
+                "number_of_objects": 2,
+                "services": [
+                    {
+                        "label": "azure-xgboost-0.9",
+                        "image_digest": "sha256:5e22eb513d79648590b97d656213eddd6e7ec7a94ed580513498a13ac63ec71b",
+                        "state": 0
+                    }
+                ]
+            }
+        ]
+    },
+    "users": [
+        {
+            "number_of_objects": 33,
+            "mobility_model": "edge_sim_py.pathway",
+            "mobility_model_parameters": {
+                "seconds_to_move": 60
+            }
+        },
+        {
+            "number_of_objects": 33,
+            "mobility_model": "edge_sim_py.pathway",
+            "mobility_model_parameters": {
+                "seconds_to_move": 210
+            }
+        }
+    ]
+}
