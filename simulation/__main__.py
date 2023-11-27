@@ -28,7 +28,8 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
         resource_management_algorithm_parameters={"algorithm": algorithm},
         stopping_criterion=lambda model: model.schedule.steps == number_of_steps,
         tick_duration=1,
-        tick_unit="seconds"
+        tick_unit="seconds",
+        user_defined_functions=[pathway]
     )
 
     # Loading custom EdgeSimPy components and methods
