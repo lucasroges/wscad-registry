@@ -1,0 +1,53 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Central",
+            "type": "python",
+            "request": "launch",
+            "module": "simulation",
+            "args": [
+                "--algorithm", "central",
+                "--dataset", "datasets/central.json",
+                "--seed", "1",
+                "--number-of-steps", "3600",
+            ]
+        },
+        {
+            "name": "Community",
+            "type": "python",
+            "request": "launch",
+            "module": "simulation",
+            "args": [
+                "--algorithm", "community",
+                "--dataset", "datasets/community.json",
+                "--seed", "1",
+                "--number-of-steps", "3600",
+            ]
+        },
+        {
+            "name": "P2P",
+            "type": "python",
+            "request": "launch",
+            "module": "simulation",
+            "args": [
+                "--algorithm", "p2p",
+                "--dataset", "datasets/p2p.json",
+                "--seed", "1",
+                "--number-of-steps", "3600",
+            ]
+        },
+        {
+            "name": "Dynamic",
+            "type": "python",
+            "request": "launch",
+            "module": "simulation",
+            "args": [
+                "--algorithm", "dynamic",
+                "--dataset", "datasets/p2p.json",
+                "--seed", "1",
+                "--number-of-steps", "3600",
+            ]
+        },
+    ]
+}
