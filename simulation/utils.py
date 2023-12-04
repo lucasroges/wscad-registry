@@ -1,3 +1,4 @@
+import math
 import random
 import edge_sim_py
 import networkx as nx
@@ -776,3 +777,17 @@ def pathway(user: object):
 
     # Adding the path that connects the current to the target location to the client's mobility trace
     user.coordinates_trace.extend([bs.coordinates for bs in mobility_path])
+
+
+def get_geometric_mean(values: list):
+    """Calculates the geometric mean of a list of values.
+
+    Args:
+        values (list): List of values.
+
+    Returns:
+        geometric_mean (float): Geometric mean of the list of values.
+    """
+    number_of_values = len(values)
+    geometric_mean = math.prod(values) ** (1 / number_of_values)
+    return geometric_mean
