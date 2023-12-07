@@ -221,8 +221,7 @@ def create_users(users_metadata: dict, map_coordinates: list):
             )
             user.mobility_model = eval(user_metadata["mobility_model"]) if "mobility_model" in user_metadata else edge_sim_py.random_mobility
             user.coordinates_trace = user_metadata["coordinates_trace"] if "coordinates_trace" in user_metadata else []
-            user.steps_during_useless_migrations = 0
-            user.accumulated_violation_intensity = 0
+            user.mobility_model_parameters = user_metadata["mobility_model_parameters"] if "mobility_model_parameters" in user_metadata else {}
             users.append(user)
 
     return users
@@ -346,34 +345,6 @@ def create_application_service(application: edge_sim_py.Application, service_spe
     service._available = True
 
     application.connect_to_service(service)
-
-
-def user_to_dict(self) -> dict:
-    """Method that overrides the way User objects are formatted to JSON."
-    Returns:
-        dict: JSON-friendly representation of the object as a dictionary.
-    """
-    access_patterns = {}
-    for app_id, access_pattern in self.access_patterns.items():
-        access_patterns[app_id] = {"class": access_pattern.__class__.__name__, "id": access_pattern.id}
-
-    dictionary = {
-        "attributes": {
-            "id": self.id,
-            "coordinates": self.coordinates,
-            "coordinates_trace": self.coordinates_trace,
-            "delays": copy.deepcopy(self.delays),
-            "communication_paths": copy.deepcopy(self.communication_paths),
-            "making_requests": copy.deepcopy(self.making_requests),
-        },
-        "relationships": {
-            "access_patterns": access_patterns,
-            "mobility_model": self.mobility_model.__name__,
-            "applications": [{"class": type(app).__name__, "id": app.id} for app in self.applications],
-            "base_station": {"class": type(self.base_station).__name__, "id": self.base_station.id},
-        },
-    }
-    return dictionary
 
 
 def container_registry_to_dict(self) -> dict:
