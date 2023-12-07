@@ -498,6 +498,29 @@ def dataset_analysis():
     print(f"Shared size between N images: {sharing_info}")
     print(f"Shared size between N images (%): {sharing_info_percentage}")
 
+    print("\n\n==== IMAGE SIZE DISTRIBUTION ====")
+    image_sizes = []
+    for image in unique_images:
+        image_name = edge_sim_py.ContainerImage.find_by(attribute_name="digest", attribute_value=image.digest).name
+        if image_name == "registry":
+            continue
+
+        image_layers = [edge_sim_py.ContainerLayer.find_by(attribute_name="digest", attribute_value=digest) for digest in image.layers_digests]
+        image_size = sum([layer.size for layer in image_layers])
+        image_sizes.append(image_size)
+
+    max_image_size = max(image_sizes)
+    min_image_size = min(image_sizes)
+    slices = 10
+    slice_size = (max_image_size - min_image_size) / slices
+    image_sizes_distribution = {}
+    for i in range(slices):
+        image_sizes_distribution[f"{round(min_image_size + (i * slice_size), 2)} - {round(min_image_size + ((i + 1) * slice_size), 2)}"] = len([size for size in image_sizes if size >= min_image_size + (i * slice_size) and (size < min_image_size + ((i + 1) * slice_size) if i < slices - 1 else size <= min_image_size + ((i + 1) * slice_size))])
+
+    print(f"Max image size: {max_image_size}")
+    print(f"Min image size: {min_image_size}")
+    print(f"Image sizes distribution: {image_sizes_distribution}")
+
 
 def display_topology(topology: object, output_filepath: str, output_filename: str):
     """Method that displays the topology of the network.
