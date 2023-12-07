@@ -1,4 +1,5 @@
 from .utils import *
+from .custom_methods import *
 from .wrapper import algorithm_wrapper
 
 import random
