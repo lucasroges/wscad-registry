@@ -212,6 +212,11 @@ def uniform(n_items: int, valid_values: list, shuffle_distribution: bool = True)
 def create_users(users_metadata: dict, map_coordinates: list):
     users = []
     for user_metadata in users_metadata:
+        seconds_to_move_distribution = uniform(
+            n_items=user_metadata["number_of_objects"],
+            valid_values=[*range(user_metadata["seconds_to_move"]["min"], user_metadata["seconds_to_move"]["max"])],
+            shuffle_distribution=True
+        ) if "seconds_to_move" in user_metadata else []
         for _ in range(user_metadata["number_of_objects"]):
             user = edge_sim_py.User()
             user._set_initial_position(
@@ -221,7 +226,13 @@ def create_users(users_metadata: dict, map_coordinates: list):
             )
             user.mobility_model = eval(user_metadata["mobility_model"]) if "mobility_model" in user_metadata else edge_sim_py.random_mobility
             user.coordinates_trace = user_metadata["coordinates_trace"] if "coordinates_trace" in user_metadata else []
-            user.mobility_model_parameters = user_metadata["mobility_model_parameters"] if "mobility_model_parameters" in user_metadata else {}
+            user.mobility_model_parameters = (
+                user_metadata["mobility_model_parameters"] if "mobility_model_parameters" in user_metadata
+                else (
+                    { "seconds_to_move": seconds_to_move_distribution.pop() } if len(seconds_to_move_distribution) > 0
+                    else {}
+                )
+            )
             users.append(user)
 
     return users
