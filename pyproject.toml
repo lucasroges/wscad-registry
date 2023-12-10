@@ -11,6 +11,7 @@ edge-sim-py = {git = "git@github.com:lucasroges/EdgeSimPy.git"}
 scikit-learn = "^1.3.0"
 matplotlib = "^3.7.2"
 ipykernel = "^6.27.0"
+pymoo = "^0.6.1.1"
 
 
 [build-system]

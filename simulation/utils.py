@@ -76,6 +76,8 @@ def least_congested_shortest_path(topology: edge_sim_py.Topology, source: edge_s
     Returns:
         list: Least congested shortest path between the source and target network switches    
     """
+    # TODO: replace this method with an utils method similar to 'find_shortest_path' (e.g., find_all_shortest_paths)
+    # However, this change might not be enough to decrease the simulation time, as the lines below have a significant cost
     shortest_paths = nx.all_shortest_paths(
         topology,
         source=source,
@@ -161,3 +163,50 @@ def get_geometric_mean(values: list):
     number_of_values = len(values)
     geometric_mean = math.prod(values) ** (1 / number_of_values)
     return geometric_mean
+
+
+def get_mean_latency(simulator: edge_sim_py.Simulator):
+    """Calculates the mean latency of the simulation.
+
+    Args:
+        simulator (edge_sim_py.Simulator): Simulation object.
+
+    Returns:
+        mean_latency (float): Mean latency of the simulation.
+    """
+    user_metrics = simulator.agent_metrics["User"]
+    accumulated_latency = sum([user_metric["Delays"] for user_metric in user_metrics])
+    mean_latency = accumulated_latency / len(user_metrics)
+
+    return mean_latency
+
+
+def get_mean_provisioning_time(simulator: edge_sim_py.Simulator):
+    """Calculates the mean provisioning time of the simulation.
+
+    Args:
+        simulator (edge_sim_py.Simulator): Simulation object.
+
+    Returns:
+        mean_provisioning_time (float): Mean provisioning time of the simulation.
+    """
+    service_metrics_from_last_step = [service_metric for service_metric in simulator.agent_metrics["Service"] if service_metric["Time Step"] == simulator.schedule.steps]
+    accumulated_provisioning_time = sum([service_metric["Average Migration Duration"] for service_metric in service_metrics_from_last_step])
+    mean_provisioning_time = accumulated_provisioning_time / len(service_metrics_from_last_step)
+
+    return mean_provisioning_time
+
+
+def get_overloaded_edge_servers(simulator: edge_sim_py.Simulator):
+    """Calculates the number of overloaded edge servers in the simulation.
+
+    Args:
+        simulator (edge_sim_py.Simulator): Simulation object.
+
+    Returns:
+        overloaded_edge_servers (int): Accumulated number of overloaded edge servers in the simulation.
+    """
+    topology_metrics = simulator.agent_metrics["Topology"]
+    accumulated_overloaded_edge_servers = sum([topology_metric["Overloaded Edge Servers"] for topology_metric in topology_metrics])
+
+    return accumulated_overloaded_edge_servers

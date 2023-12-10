@@ -14,19 +14,34 @@ def parse_arguments(parser: argparse.ArgumentParser):
     parser.add_argument("--dataset", "-d", help="Dataset file to run the simulation", type=str, required=True)
     parser.add_argument("--number-of-steps", "-n", help="Number of steps to run the simulation", default=10, type=int)
 
+    # Specific arguments
+    parser.add_argument("--registry-mapping", "-rm", help="Registry mapping", default=None, type=str)
+
     return parser.parse_args()
 
 
-def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
+def main(
+    seed: int,
+    algorithm: str,
+    dataset: str,
+    number_of_steps: int,
+    registry_mapping: str
+):
     # Setting a seed value to enable reproducibility
     random.seed(seed)
 
+    # Setting algorithm parameters
+    algorithm_parameters = {
+        "algorithm": algorithm,
+        "registry_mapping": list(map(int, registry_mapping)) if registry_mapping is not None else None
+    }
+
     # Creating a Simulator object
     simulator = edge_sim_py.Simulator(
-        dump_interval=4000,
+        dump_interval=4000 if algorithm != "custom" else float("inf"),
         logs_directory=f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed}",
         resource_management_algorithm=algorithm_wrapper,
-        resource_management_algorithm_parameters={"algorithm": algorithm},
+        resource_management_algorithm_parameters=algorithm_parameters,
         stopping_criterion=lambda model: model.schedule.steps == number_of_steps,
         tick_duration=1,
         tick_unit="seconds",
@@ -56,6 +71,14 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
     # Executing the simulation
     simulator.run_model()
 
+    # Printing the simulation results
+    results = {
+        "mean_latency": get_mean_latency(simulator=simulator),
+        "mean_provisioning_time": get_mean_provisioning_time(simulator=simulator),
+        "overloaded_servers": get_overloaded_edge_servers(simulator=simulator)
+    }
+    print(results)
+
 if __name__ == "__main__":
     # Parsing command line arguments
     arguments = parse_arguments(argparse.ArgumentParser())
@@ -66,4 +89,5 @@ if __name__ == "__main__":
         algorithm=arguments.algorithm,
         dataset=arguments.dataset,
         number_of_steps=arguments.number_of_steps,
+        registry_mapping=arguments.registry_mapping
     )
