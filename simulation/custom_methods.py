@@ -542,10 +542,9 @@ def edge_server_step_with_distributed_pulling(self):
             # Checking if the registry is hosted on a valid host in the infrastructure and if it has the layer we need to pull
             if registry.server and any(layer.digest == l.digest for l in registry.server.container_layers):
                 # Selecting a network path to be used to pull the layer from the registry
-                path = nx.shortest_path(
-                    G=self.model.topology,
-                    source=registry.server.base_station.network_switch,
-                    target=self.base_station.network_switch,
+                path = find_shortest_path(
+                    origin=registry.server.base_station.network_switch,
+                    target=self.base_station.network_switch
                 )
 
                 # Calculating how many layers the registry is provisioning
@@ -558,11 +557,7 @@ def edge_server_step_with_distributed_pulling(self):
         # Selecting the registry from which the layer will be pulled to the (target) edge server
         registries_with_layer = sorted(registries_with_layer, key=lambda r: (r["queue_size"], len(r["path"])))
         registry = registries_with_layer[0]["object"]
-        path = least_congested_shortest_path(
-            topology=self.model.topology,
-            source=registry.server.base_station.network_switch,
-            target=self.base_station.network_switch
-        )["path"]
+        path = registries_with_layer[0]["path"]
 
         # Creating the flow object
         flow = edge_sim_py.NetworkFlow(

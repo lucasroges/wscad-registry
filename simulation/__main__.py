@@ -49,8 +49,6 @@ def main(seed: int, algorithm: str, dataset: str, number_of_steps: int):
     # Loading conditional custom EdgeSimPy components and methods
     if "p2p" in dataset:
         edge_sim_py.EdgeServer.step = edge_server_step_with_distributed_pulling
-    else:
-        edge_sim_py.EdgeServer.step = edge_server_step_with_least_congested_shortest_path
 
     # Loading the dataset
     simulator.initialize(input_file=dataset)
