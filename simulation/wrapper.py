@@ -13,10 +13,10 @@ def algorithm_wrapper(parameters: dict):
     random_state = random.getstate()
 
     # Running the custom algorithm
-    try:
-        eval(f"{parameters['algorithm']}_registry_provisioning")(parameters=parameters)
-    except NameError:
+    if parameters["algorithm"] not in ["p2p", "dynamic"]:
         print(f"{parameters['algorithm']} strategy does not require a custom algorithm.")
+    else:
+        eval(f"{parameters['algorithm']}_registry_provisioning")(parameters=parameters)
 
     # Running the service reallocation algorithm
     follow_user()
