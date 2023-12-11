@@ -13,28 +13,49 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import multiprocessing
 import numpy as np
+import argparse
 import random
 import pickle
 import json
 import os
 
-VERBOSE = False
+VERBOSE = True
 PARALLEL = True
 N_THREADS = multiprocessing.cpu_count()
 
 
-#class MyOutput(Output):
-#    """Creates a visualization on how the genetic algorithm is evolving throughout the generations."""
-#    def __init__(self):
-#        super().__init__()
-#        self.x_mean = Column("x_mean", width=13)
-#        self.x_std = Column("x_std", width=13)
-#        self.columns += [self.x_mean, self.x_std]
-#
-#    def update(self, algorithm):
-#        super().update(algorithm)
-#        self.x_mean.set(np.mean(algorithm.pop.get("X")))
-#        self.x_std.set(np.std(algorithm.pop.get("X")))
+def parse_arguments(parser: argparse.ArgumentParser):
+    parser.add_argument("--seed", "-s", help="Seed value for EdgeSimPy", default=1, type=int)
+    parser.add_argument("--number-of-generations", "-ngen", help="Number of generations the genetic algorithm will run through", type=int, required=True)
+    parser.add_argument("--population-size", "-pop", help="Number of chromosomes that will represent the genetic algorithm's population", type=int, required=True)
+    parser.add_argument("--crossover-probability", "-cross", help="Crossover probability", type=float, required=True)
+    parser.add_argument("--mutation-probability", "-mut", help="Mutation probability", type=float, required=True)
+    parser.add_argument("--dataset", "-d", help="Dataset file to run the simulation", type=str, required=True)
+
+    return parser.parse_args()
+
+
+class MyOutput(Output):
+    """Creates a visualization on how the genetic algorithm is evolving throughout the generations."""
+    def __init__(self):
+        super().__init__()
+        self.mean_latency = Column("mean_latency", width=20, truncate=False)
+        self.mean_prov_time = Column("mean_prov_time", width=20, truncate=False)
+        self.overloaded_servers = Column("overloaded_servers", width=20, truncate=False)
+        self.columns += [self.mean_latency, self.mean_prov_time, self.overloaded_servers]
+
+    def update(self, algorithm):
+        super().update(algorithm)
+
+        # Objective values
+        mean_latency = np.min(algorithm.pop.get("F")[:, 0])
+        mean_prov_time = np.min(algorithm.pop.get("F")[:, 1])
+        self.mean_latency.set(mean_latency)
+        self.mean_prov_time.set(mean_prov_time)
+
+        # Penalty values
+        overloaded_servers = np.min(algorithm.pop.get("CV")[:, 0])
+        self.overloaded_servers.set(overloaded_servers)
 
 
 class RegistryProvisioningProblem(Problem):
@@ -53,6 +74,8 @@ class RegistryProvisioningProblem(Problem):
             type_var=int,
             **kwargs
         )
+        self.seed = kwargs["seed"]
+        self.dataset = kwargs["dataset"]
 
     def _evaluate(self, x, out, *args, **kwargs):
         """Evaluates solutions according to the problem objectives.
@@ -62,17 +85,17 @@ class RegistryProvisioningProblem(Problem):
         """
         if PARALLEL:
             executor = ProcessPoolExecutor(max_workers=N_THREADS)
-            futures = [executor.submit(self.get_fitness_score_and_constraints, solution) for solution in x]
+            futures = [executor.submit(self.get_fitness_score_and_constraints, solution, self.seed, self.dataset) for solution in x]
             output = [future.result() for future in as_completed(futures)]
             executor.shutdown()
 
         else:
-            output = [self.get_fitness_score_and_constraints(solution=solution) for solution in x]
+            output = [self.get_fitness_score_and_constraints(solution=solution, seed=self.seed, dataset=self.dataset) for solution in x]
 
         out["F"] = np.array([item[0] for item in output])
         out["G"] = np.array([item[1] for item in output])
 
-    def get_fitness_score_and_constraints(self, solution: list) -> tuple:
+    def get_fitness_score_and_constraints(self, solution: list, seed: int, dataset: str) -> tuple:
         """Calculates the fitness score and penalties of a solution based on the problem definition.
         Args:
             solution (list): Solution that solves the problem.
@@ -80,18 +103,26 @@ class RegistryProvisioningProblem(Problem):
             tuple: Output of the evaluation function containing the fitness scores of the solution and its penalties.
         """
         # Run the simulation with the solution
-        results = apply_solution(solution)
+        results = apply_solution(solution, seed, dataset)
 
         # Gather the results
         output = evaluate_solution(results)
 
         return output
 
+
+class NoFeasibleSolution(Exception):
+    """Exception raised when the genetic algorithm does not find a feasible solution."""
+    pass
+
         
-
-
 def genetic_algorithm(
-    n_gen: int, pop_size: int, cross_prob: int, mutation_prob: int, seed: int = 1
+    seed: int,
+    n_gen: int,
+    pop_size: int,
+    cross_prob: int,
+    mutation_prob: int,
+    dataset: str,
 ) -> list:
     """Gets the allocation scheme used to drain servers during the maintenance using the genetic algorithm.
     Args:
@@ -113,24 +144,36 @@ def genetic_algorithm(
     )
 
     # Running the genetic algorithm
-    problem = RegistryProvisioningProblem()
-    res = minimize(problem, algorithm, termination=("n_gen", n_gen), seed=seed, verbose=VERBOSE)#, output=MyOutput())
+    problem = RegistryProvisioningProblem(seed=seed, dataset=dataset)
+    res = minimize(
+        problem,
+        algorithm,
+        termination=("n_gen", n_gen),
+        seed=seed,
+        verbose=VERBOSE,
+        output=MyOutput(),
+        dataset=dataset,
+    )
 
     # Write pickle file
-    file_name = f"logs/nsgaii;ngen={n_gen};pop_size={pop_size};cross={cross_prob};mut={mutation_prob}.pkl"
+    file_name = f"logs/nsgaii;seed={seed};ngen={n_gen};pop_size={pop_size};cross={cross_prob};mut={mutation_prob}.pkl"
     with open(file_name, "wb") as f:
         pickle.dump(res, f)
 
+    # Check if the algorithm has a feasible solution
+    if res.X is None:
+        raise NoFeasibleSolution()
+
     # Parsing the genetic algorithm output
-    solutions = []
-    for i in range(len(res.X)):
-        solution = {
-            "mapping": res.X[i].tolist(),
-            "mean_latency": res.F[i][0],
-            "mean_provisioning_time": res.F[i][1],
-            "overloaded_servers": res.CV[i][0].tolist(),
+    solutions = [
+        {
+            "mapping": solution.X,
+            "mean_latency": solution.F[0],
+            "mean_provisioning_time": solution.F[1],
+            "overloaded_servers": solution.CV[0],
         }
-        solutions.append(solution)
+        for solution in res.X
+    ]
 
     best_solution = sorted(
         solutions, key=lambda solution: (solution["mean_latency"] + solution["mean_provisioning_time"])
@@ -139,7 +182,7 @@ def genetic_algorithm(
     return best_solution
 
 
-def apply_solution(solution: list):
+def apply_solution(solution: list, seed: int, dataset: str):
     """Applies the registry provisioning scheme suggested by the chromosome.
 
     Args:
@@ -147,7 +190,7 @@ def apply_solution(solution: list):
     """
     solution = "".join([str(int(item)) for item in solution])
     results_str = os.popen(
-        f"poetry run python -m simulation -s 1 -a custom -d datasets/p2p_zero.json -n 3600 -rm {solution}"
+        f"poetry run python -m simulation -s {seed} -a custom -d {dataset} -n 3600 -rm {solution}"
     ).read()
 
     results = json.loads(results_str.replace("'", '"'))
@@ -172,15 +215,21 @@ def evaluate_solution(results):
 
 
 if __name__ == "__main__":
-    seed = 1
-    random.seed(seed)
+    # Parsing command line arguments
+    arguments = parse_arguments(argparse.ArgumentParser())
 
-    best_solution = genetic_algorithm(
-        n_gen=20,
-        pop_size=240,
-        cross_prob=0.8,
-        mutation_prob=0.1,
-        seed=seed,
-    )
+    try:
+        best_solution = genetic_algorithm(
+            seed=arguments.seed,
+            n_gen=arguments.number_of_generations,
+            pop_size=arguments.population_size,
+            cross_prob=arguments.crossover_probability,
+            mutation_prob=arguments.mutation_probability,
+            dataset=arguments.dataset,
+        )
 
-    print("=== BEST SOLUTION: ", best_solution)
+        best_solution = "".join([str(int(item)) for item in best_solution])
+
+        print("=== BEST SOLUTION: ", best_solution)
+    except NoFeasibleSolution:
+        print("=== NO FEASIBLE SOLUTION FOUND")
