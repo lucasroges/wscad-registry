@@ -20,7 +20,7 @@ def edge_server_step_with_least_congested_shortest_path(self):
             if registry.server and any(layer.digest == l.digest for l in registry.server.container_layers):
                 # Selecting a network path to be used to pull the layer from the registry
                 path_data = find_shortest_path(
-                    origin=registry.server.base_station.network_switch,
+                    source=registry.server.base_station.network_switch,
                     target=self.base_station.network_switch
                 )
 
@@ -356,15 +356,15 @@ def user_set_communication_path(self, app: object, communication_path: list = []
         # Defining a set of links to connect the items in the application's service chain
         for i in range(len(communication_chain) - 1):
 
-            # Defining origin and target nodes
-            origin = communication_chain[i]
+            # Defining source and target nodes
+            source = communication_chain[i]
             target = communication_chain[i + 1]
 
-            # Finding and storing the best communication path between the origin and target nodes
-            if origin == target:
+            # Finding and storing the best communication path between the source and target nodes
+            if source == target:
                 path = []
             else:
-                path = find_shortest_path(origin=origin.network_switch, target=target.network_switch)
+                path = find_shortest_path(source=source.network_switch, target=target.network_switch)
 
             # Adding the best path found to the communication path
             self.communication_paths[str(app.id)].append([network_switch.id for network_switch in path])
@@ -543,7 +543,7 @@ def edge_server_step_with_distributed_pulling(self):
             if registry.server and any(layer.digest == l.digest for l in registry.server.container_layers):
                 # Selecting a network path to be used to pull the layer from the registry
                 path = find_shortest_path(
-                    origin=registry.server.base_station.network_switch,
+                    source=registry.server.base_station.network_switch,
                     target=self.base_station.network_switch
                 )
 

@@ -78,12 +78,7 @@ def least_congested_shortest_path(topology: edge_sim_py.Topology, source: edge_s
     """
     # TODO: replace this method with an utils method similar to 'find_shortest_path' (e.g., find_all_shortest_paths)
     # However, this change might not be enough to decrease the simulation time, as the lines below have a significant cost
-    shortest_paths = nx.all_shortest_paths(
-        topology,
-        source=source,
-        target=target,
-        weight="delay"
-    )
+    shortest_paths = find_all_shortest_paths(source=source, target=target)
 
     paths = []
     for path in shortest_paths:
@@ -110,31 +105,63 @@ def least_congested_shortest_path(topology: edge_sim_py.Topology, source: edge_s
     return min(paths, key=lambda path: path["max_data_to_transfer"])
 
 
-def find_shortest_path(origin: edge_sim_py.NetworkSwitch, target: edge_sim_py.NetworkSwitch) -> list:
-    """Finds the shortest path (delay used as weight) between two network switches (origin and target).
+def find_shortest_path(source: edge_sim_py.NetworkSwitch, target: edge_sim_py.NetworkSwitch) -> list:
+    """Finds the shortest path (delay used as weight) between two network switches (source and target).
 
     Args:
-        origin (edge_sim_py.NetworkSwitch): Origin network switch.
+        source (edge_sim_py.NetworkSwitch): Source network switch.
         target (edge_sim_py.NetworkSwitch): Target network switch.
 
     Returns:
-        path (list): Shortest path between the origin and target network switches.
+        path (list): Shortest path between the source and target network switches.
     """
-    topology = origin.model.topology
+    topology = source.model.topology
     path = []
 
     if not hasattr(topology, "delay_shortest_paths"):
         topology.delay_shortest_paths = {}
 
-    key = (origin, target)
+    key = (source, target)
 
     if key in topology.delay_shortest_paths.keys():
         path = topology.delay_shortest_paths[key]
     else:
-        path = nx.shortest_path(topology, source=origin, target=target, weight="delay")
+        path = nx.shortest_path(topology, source=source, target=target, weight="delay")
         topology.delay_shortest_paths[key] = path
 
     return path
+
+
+def find_all_shortest_paths(source: edge_sim_py.NetworkSwitch, target: edge_sim_py.NetworkSwitch) -> list:
+    """Finds all the shortest paths (delay used as weight) between two network switches (source and target).
+
+    Args:
+        source (edge_sim_py.NetworkSwitch): Source network switch.
+        target (edge_sim_py.NetworkSwitch): Target network switch.
+
+    Returns:
+        path (list): Shortest paths between the source and target network switches.
+    """
+    topology = source.model.topology
+    paths = []
+
+    if not hasattr(topology, "delay_all_shortest_paths"):
+        topology.delay_all_shortest_paths = {}
+
+    key = (source, target)
+
+    if key in topology.delay_all_shortest_paths.keys():
+        paths = topology.delay_all_shortest_paths[key]
+    else:
+        paths = list(nx.all_shortest_paths(
+            topology,
+            source=source,
+            target=target,
+            weight="delay"
+        ))
+        topology.delay_all_shortest_paths[key] = paths
+
+    return paths
 
 
 def normalize_cpu_and_memory(cpu, memory) -> float:
