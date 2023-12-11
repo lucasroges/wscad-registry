@@ -22,7 +22,7 @@ def custom_registry_provisioning(parameters: dict):
         return
     
     # Collecting edge servers that are candidates to host a container registry
-    candidate_servers = get_candidate_servers(edge_servers, template_registry)
+    candidate_servers = [server for server in edge_servers if len(server.container_registries) == 0 or server.container_registries[0].p2p_registry == True]
 
     # Gathering custom registry mapping
     base_index = int(current_step / 60)
