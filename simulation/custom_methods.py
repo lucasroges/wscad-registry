@@ -387,18 +387,20 @@ def user_collect(self) -> dict:
         metrics (dict): Object metrics.
     """
     # Computing application metrics
-    application_chain_size = len(self.applications[0].services)
     application_cpu_demand = sum([service.cpu_demand for service in self.applications[0].services])
     application_memory_demand = sum([service.memory_demand for service in self.applications[0].services])
+
+    # Especifying user type: pedestrian or vehicular
+    user_type = "pedestrian" if self.mobility_model_parameters["seconds_to_move"] > 100 else "vehicular"
 
     metrics = {
         "Instance ID": self.id,
         "Coordinates": self.coordinates,
         "Base Station": f"{self.base_station} ({self.base_station.coordinates})" if self.base_station else None,
         "Delays": sum(self.delays.values()),
-        "Application Chain Size": application_chain_size,
         "Application CPU Demand": application_cpu_demand,
         "Application Memory Demand": application_memory_demand,
+        "User Type": user_type,
     }
     return metrics
 
