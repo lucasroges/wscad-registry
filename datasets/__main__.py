@@ -126,10 +126,11 @@ def main(seed: int, input_filename: str, output_filename: str, registry_provisio
 
     # Exporting the scenario to a file
     edge_sim_py.ContainerRegistry._to_dict = container_registry_to_dict
+    edge_sim_py.User._to_dict = user_to_dict
     edge_sim_py.ComponentManager.export_scenario(save_to_file=True, file_name=output_filename)
 
     # Dataset analysi
-    dataset_analysis()
+    dataset_analysis(seed, input_filename, output_filename, registry_provisioning, communities)
 
     # Displaying topology
     display_topology(

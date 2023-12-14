@@ -233,6 +233,7 @@ def create_users(users_metadata: dict, map_coordinates: list):
                     else {}
                 )
             )
+            user.type = user_metadata["type"]
             users.append(user)
 
     return users
@@ -404,35 +405,10 @@ def get_service_size(service: edge_sim_py.Service):
     return sum([layer.size for layer in layers])
 
 
-def dataset_analysis():
-    users = []
-    for user in edge_sim_py.User.all():
-        user_metadata = {"object": user, "all_delays": []}
-        for edge_server in edge_sim_py.EdgeServer.all():
-            path = nx.shortest_path(
-                edge_sim_py.Topology.first(), source=user.base_station.network_switch, target=edge_server.network_switch, weight="delay"
-            )
-            user_metadata["all_delays"].append(edge_sim_py.Topology.first().calculate_path_delay(path=path))
-        user_metadata["min_delay"] = min(user_metadata["all_delays"])
-        user_metadata["max_delay"] = max(user_metadata["all_delays"])
-        user_metadata["avg_delay"] = sum(user_metadata["all_delays"]) / len(user_metadata["all_delays"])
-        user_metadata["delays"] = {}
-        for delay in sorted(list(set(user_metadata["all_delays"]))):
-            user_metadata["delays"][delay] = user_metadata["all_delays"].count(delay)
-
-        users.append(user_metadata)
-
-    print("==== NETWORK DISTANCE (DELAY) BETWEEN USERS AND EDGE SERVERS ====")
-    for user_metadata in users:
-        user_attrs = {
-            "object": user_metadata["object"],
-            "service_chain_size": len(user_metadata["object"].applications[0].services),
-            "min": user_metadata["min_delay"],
-            "max": user_metadata["max_delay"],
-            "avg": round(user_metadata["avg_delay"]),
-            "delays": user_metadata["delays"],
-        }
-        print(f"{user_attrs}")
+def dataset_analysis(seed, input_filename, output_filename, registry_provisioning, communities):
+    # Printing parameters
+    print("\n\n==== CURRENT SCENARIO ====")
+    print(f"Seed: {seed} | Input: {input_filename} | Output: {output_filename} | Registry Provisioning: {registry_provisioning} | Communities: {communities}")
 
     # Calculating the infrastructure occupation and information about the services
     edge_server_cpu_capacity = 0
@@ -631,3 +607,37 @@ def provision_container_registry(container_registry_specification: dict, server:
         server.container_layers.append(layer)
 
     return registry
+
+
+def user_to_dict(self) -> dict:
+    """Method that overrides the way the object is formatted to JSON."
+
+    Returns:
+        dict: JSON-friendly representation of the object as a dictionary.
+    """
+    access_patterns = {}
+    for app_id, access_pattern in self.access_patterns.items():
+        access_patterns[app_id] = {"class": access_pattern.__class__.__name__, "id": access_pattern.id}
+
+    dictionary = {
+        "attributes": {
+            "id": self.id,
+            "coordinates": self.coordinates,
+            "coordinates_trace": self.coordinates_trace,
+            "delays": copy.deepcopy(self.delays),
+            "delay_slas": copy.deepcopy(self.delay_slas),
+            "communication_paths": copy.deepcopy(self.communication_paths),
+            "making_requests": copy.deepcopy(self.making_requests),
+            "mobility_model_parameters": copy.deepcopy(self.mobility_model_parameters)
+            if self.mobility_model_parameters
+            else {},
+            "type": self.type,
+        },
+        "relationships": {
+            "access_patterns": access_patterns,
+            "mobility_model": self.mobility_model.__name__,
+            "applications": [{"class": type(app).__name__, "id": app.id} for app in self.applications],
+            "base_station": {"class": type(self.base_station).__name__, "id": self.base_station.id},
+        },
+    }
+    return dictionary
