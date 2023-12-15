@@ -18,12 +18,18 @@ poetry install
 To build the necessary datasets to replicate the paper's experiments, run the following commands at the repository root folder:
 
 ```sh
-poetry run python -m datasets -s 1 -i datasets/inputs/base_minimal.json -o central_minimal -rp central && \
-poetry run python -m datasets -s 1 -i datasets/inputs/base_recommended.json -o central_recommended -rp central && \
-poetry run python -m datasets -s 1 -i datasets/inputs/base_minimal.json -o community_minimal -rp community -c 6 && \
-poetry run python -m datasets -s 1 -i datasets/inputs/base_recommended.json -o community_recommended -rp community -c 6 && \
-poetry run python -m datasets -s 1 -i datasets/inputs/base_minimal.json -o p2p_minimal -rp p2p && \
-poetry run python -m datasets -s 1 -i datasets/inputs/base_recommended.json -o p2p_recommended -rp p2p
+poetry run python -m datasets -i datasets/inputs/nodes\=100\;mobility\=faster.json -o central\;nodes=100\;mobility=faster -rp central && \
+poetry run python -m datasets -i datasets/inputs/nodes\=100\;mobility\=slower.json -o central\;nodes=100\;mobility=slower -rp central && \
+poetry run python -m datasets -i datasets/inputs/nodes\=196\;mobility\=faster.json -o central\;nodes=196\;mobility=faster -rp central && \
+poetry run python -m datasets -i datasets/inputs/nodes\=196\;mobility\=slower.json -o central\;nodes=196\;mobility=slower -rp central && \
+poetry run python -m datasets -i datasets/inputs/nodes\=100\;mobility\=faster.json -o community\;nodes=100\;mobility=faster -rp community -c 6 && \
+poetry run python -m datasets -i datasets/inputs/nodes\=100\;mobility\=slower.json -o community\;nodes=100\;mobility=slower -rp community -c 6 && \
+poetry run python -m datasets -i datasets/inputs/nodes\=196\;mobility\=faster.json -o community\;nodes=196\;mobility=faster -rp community -c 6 && \
+poetry run python -m datasets -i datasets/inputs/nodes\=196\;mobility\=slower.json -o community\;nodes=196\;mobility=slower -rp community -c 6 && \
+poetry run python -m datasets -i datasets/inputs/nodes\=100\;mobility\=faster.json -o p2p\;nodes=100\;mobility=faster -rp p2p && \
+poetry run python -m datasets -i datasets/inputs/nodes\=100\;mobility\=slower.json -o p2p\;nodes=100\;mobility=slower -rp p2p && \
+poetry run python -m datasets -i datasets/inputs/nodes\=196\;mobility\=faster.json -o p2p\;nodes=196\;mobility=faster -rp p2p && \
+poetry run python -m datasets -i datasets/inputs/nodes\=196\;mobility\=slower.json -o p2p\;nodes=196\;mobility=slower -rp p2p
 ```
 
 ## Running the experiments
