@@ -1,4 +1,4 @@
-from .strategies import p2p_registry_provisioning, dynamic_registry_provisioning, custom_registry_provisioning
+from .strategies import p2p_registry_provisioning, dynamic_registry_provisioning, custom_registry_provisioning, resource_aware_dynamic_registry_provisioning
 from .utils import follow_user
 
 import random
@@ -13,7 +13,7 @@ def algorithm_wrapper(parameters: dict):
     random_state = random.getstate()
 
     # Running the custom algorithm
-    if parameters["algorithm"] not in ["p2p", "dynamic", "custom"]:
+    if parameters["algorithm"] not in ["p2p", "dynamic", "custom", "resource_aware_dynamic"]:
         print(f"{parameters['algorithm']} strategy does not require a custom algorithm.")
     else:
         eval(f"{parameters['algorithm']}_registry_provisioning")(parameters=parameters)

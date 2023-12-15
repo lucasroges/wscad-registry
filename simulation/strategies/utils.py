@@ -1,4 +1,4 @@
-from ..utils import find_shortest_path
+from ..utils import find_shortest_path, normalize_cpu_and_memory
 
 import edge_sim_py
 
@@ -105,3 +105,42 @@ def get_layer_matching(application: edge_sim_py.Application, edge_server: edge_s
     layer_matching = sum([layer["size"] for layer in matching_layers]) / sum([layer["size"] for layer in application_unique_layers])
 
     return layer_matching
+
+
+def get_edge_server_importance_for_application(edge_server: edge_sim_py.EdgeServer, application: edge_sim_py.Application):
+    """Calculates the importance of an edge server for an application.
+
+    Args:
+        edge_server (edge_sim_py.EdgeServer): Edge server
+        application (edge_sim_py.Application): Application
+
+    Returns:
+        float: Importance of the edge server for the application
+    """
+    # Gathering variables
+    app_user = application.users[0]
+    topology = edge_sim_py.Topology.first()
+
+    # Getting server occupation
+    server_occupation = (
+        normalize_cpu_and_memory(edge_server.cpu_demand, edge_server.memory_demand) /
+        normalize_cpu_and_memory(edge_server.cpu, edge_server.memory)
+    )
+
+    # Getting current delay between user and application
+    current_latency = app_user.delays[str(application.id)]
+
+    # Getting delay between edge server and user
+    user_path_to_edge_server = find_shortest_path(
+        app_user.base_station.network_switch,
+        edge_server.network_switch
+    )
+    user_delay_to_edge_server = topology.calculate_path_delay(user_path_to_edge_server)
+    
+    # Getting difference between current delay and delay to edge server
+    latency_difference = current_latency - user_delay_to_edge_server
+
+    # Calculating importance
+    importance = latency_difference * server_occupation
+    
+    return importance
