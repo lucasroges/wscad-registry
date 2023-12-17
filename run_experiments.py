@@ -34,19 +34,13 @@ number_of_nodes = [
     196
 ]
 
-mobility = [
-    "faster",
-    "slower"
-]
-
-print(f"GENERATING {len(algorithms) * len(number_of_nodes) * len(mobility)} COMBINATIONS")
+print(f"GENERATING {len(algorithms) * len(number_of_nodes)} COMBINATIONS")
 
 # Generating list of combinations with the parameters specified
 combinations = list(
     itertools.product(
         algorithms,
-        number_of_nodes,
-        mobility
+        number_of_nodes
     )
 )
 
@@ -58,15 +52,14 @@ for i, parameters in enumerate(combinations, 1):
     # Parsing parameters
     algorithm = parameters[0]
     number_of_nodes = parameters[1]
-    mobility = parameters[2]
 
     print(f"\t[Execution {i}]")
-    print(f"\t\t[algorithm={algorithm[0]}] [number_of_nodes={number_of_nodes}] [mobility={mobility}]")
+    print(f"\t\t[algorithm={algorithm[0]}] [number_of_nodes={number_of_nodes}]")
 
     # Executing algorithm
     proc = run_simulation(
         algorithm=algorithm[0],
-        dataset=f"datasets/{algorithm[1]}\;nodes\={number_of_nodes}\;mobility\={mobility}.json"
+        dataset=f"datasets/{algorithm[1]}\;nodes\={number_of_nodes}.json"
     )
 
     processes.append(proc)

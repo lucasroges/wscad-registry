@@ -33,23 +33,17 @@ number_of_nodes = [
     196
 ]
 
-mobility = [
-    "faster",
-    "slower"
-]
-
 replicas = [1, 2, 3]
 
 percentage_of_replicated_images = [0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
-print(f"GENERATING {len(algorithms) * len(number_of_nodes) * len(mobility) * len(replicas) * len(percentage_of_replicated_images)} COMBINATIONS")
+print(f"GENERATING {len(algorithms) * len(number_of_nodes) * len(replicas) * len(percentage_of_replicated_images)} COMBINATIONS")
 
 # Generating list of combinations with the parameters specified
 combinations = list(
     itertools.product(
         algorithms,
         number_of_nodes,
-        mobility,
         replicas,
         percentage_of_replicated_images
     )
@@ -63,17 +57,16 @@ for i, parameters in enumerate(combinations, 1):
     # Parsing parameters
     algorithm = parameters[0]
     number_of_nodes = parameters[1]
-    mobility = parameters[2]
-    replicas = parameters[3]
-    percentage_of_replicated_images = parameters[4]
+    replicas = parameters[2]
+    percentage_of_replicated_images = parameters[3]
 
     print(f"\t[Execution {i}]")
-    print(f"\t\t[algorithm={algorithm[0]}] [number_of_nodes={number_of_nodes}] [mobility={mobility}]")
+    print(f"\t\t[algorithm={algorithm[0]}] [number_of_nodes={number_of_nodes}]")
 
     # Executing algorithm
     proc = run_simulation(
         algorithm=algorithm[0],
-        dataset=f"datasets/{algorithm[1]}\;nodes\={number_of_nodes}\;mobility\={mobility}.json",
+        dataset=f"datasets/{algorithm[1]}\;nodes\={number_of_nodes}.json",
         replicas=replicas,
         percentage_of_replicated_images=percentage_of_replicated_images
     )
