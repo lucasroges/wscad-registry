@@ -27,6 +27,7 @@ algorithms = [
     ("community", "community"),
     ("p2p", "p2p"),
     ("dynamic", "p2p"),
+    ("dynamic_enhanced", "p2p"),
 ]
 
 number_of_nodes = [
