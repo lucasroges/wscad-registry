@@ -144,3 +144,65 @@ def get_edge_server_importance_for_application(edge_server: edge_sim_py.EdgeServ
     importance = latency_difference * server_occupation
     
     return importance
+
+
+def get_possible_demand(edge_server: edge_sim_py.EdgeServer) -> int:
+    """Get the possible demand of an edge server in future time steps.
+
+    Args:
+        edge_server (edge_sim_py.EdgeServer): Edge server
+
+    Returns:
+        int: Possible demand of the edge server in future time steps
+    """
+    # Gathering variables
+    topology = edge_sim_py.Topology.first()
+    applications = edge_sim_py.Application.all()
+
+    # Initializing variables
+    possible_demand = 0
+
+    # Gathering possible demand
+    for application in applications:
+        app_user = application.users[0]
+        current_latency = app_user.delays[str(application.id)]
+
+        # Getting delay between edge server and user
+        user_path_to_edge_server = find_shortest_path(
+            app_user.base_station.network_switch,
+            edge_server.network_switch
+        )
+        user_delay_to_edge_server = topology.calculate_path_delay(user_path_to_edge_server) + app_user.base_station.wireless_delay
+
+        # Getting difference between current delay and delay to edge server
+        latency_difference = current_latency - user_delay_to_edge_server
+
+        # Gathering possible demand
+        if latency_difference > 0:
+            app_normalized_demand = normalize_cpu_and_memory(
+                sum([service.cpu_demand for service in application.services]),
+                sum([service.memory_demand for service in application.services])
+            )
+            possible_demand += app_normalized_demand
+
+    return possible_demand
+
+
+def get_amount_of_free_resources(edge_server: edge_sim_py.EdgeServer) -> int:
+    """"Get the amount of free resource of an edge server.
+
+    Args:
+        edge_server (edge_sim_py.EdgeServer): Edge server
+
+    Returns:
+        int: Amount of free resource of the edge server
+    """
+    # Gathering variables
+    services_leaving = [service for service in edge_server.services if service.being_provisioned]
+    has_container_registry = edge_server.container_registries[0] if edge_server.container_registries != [] else None
+
+    # Calculating amount of free resource
+    free_cpu = edge_server.cpu - edge_server.cpu_demand + sum([service.cpu_demand for service in services_leaving]) + (has_container_registry.cpu_demand if has_container_registry else 0)
+    free_memory = edge_server.memory - edge_server.memory_demand + sum([service.memory_demand for service in services_leaving]) + (has_container_registry.memory_demand if has_container_registry else 0)
+
+    return normalize_cpu_and_memory(free_cpu, free_memory)

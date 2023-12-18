@@ -13,41 +13,24 @@ def calculate_scores(candidate_servers: list):
     Returns:
         dict: Dictionary with the score of each candidate server.    
     """
-    # Gathering variables
-    target_applications = edge_sim_py.Application.all()
-
     # For each edge server, calculate the layer matching score and number of possible recipients
     scores_metadata = []
     for candidate_server in candidate_servers:
         metadata = {
             "edge_server": candidate_server,
-            #"layer_matching_score": 0,
-            "resource_usage_score": 0,
             "final_score": 0,
         }
 
-        # Calculating layer matching score and number of possible recipients considering each application
-        for application in target_applications:
-            #layer_matching_score = get_layer_matching(application, candidate_server)
-            
-            edge_server_importance_for_application = get_edge_server_importance_for_application(candidate_server, application)
-            resource_usage_score = (
-                1 / get_edge_server_importance_for_application(candidate_server, application)
-                if edge_server_importance_for_application > 0
-                else 1
-            )
-
-            #metadata["layer_matching_score"] += layer_matching_score
-            metadata["resource_usage_score"] += resource_usage_score
+        possible_demand = get_possible_demand(candidate_server)
+        free_resources = get_amount_of_free_resources(candidate_server)
 
         # Calculating final score
-        #metadata["final_score"] = get_geometric_mean([metadata["layer_matching_score"], metadata["resource_usage_score"]])
-        metadata["final_score"] = metadata["resource_usage_score"]
+        metadata["final_score"] = possible_demand - free_resources
         
         scores_metadata.append(metadata)
 
     # Sorting scores metadata by final score
-    scores_metadata = sorted(scores_metadata, key=lambda metadata: metadata["final_score"], reverse=True)
+    scores_metadata = sorted(scores_metadata, key=lambda metadata: metadata["final_score"])
 
     return scores_metadata
 
