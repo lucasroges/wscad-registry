@@ -112,6 +112,7 @@ def get_edge_server_coordinates(edge_servers: dict):
             )[0]
             edge_server_coordinates.append(node_closest_to_centroid.coordinates)
     
+    random.shuffle(edge_server_coordinates)
     return edge_server_coordinates
 
 
