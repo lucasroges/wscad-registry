@@ -44,7 +44,7 @@ def main(
 
     # Creating a Simulator object
     simulator = edge_sim_py.Simulator(
-        dump_interval=4000 if algorithm != "custom" else float("inf"),
+        dump_interval=4000,
         logs_directory=f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed}" if algorithm != "resource_aware_dynamic" else f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed};replicas={replicas};percentage={percentage_of_replicated_images}",
         resource_management_algorithm=algorithm_wrapper,
         resource_management_algorithm_parameters=algorithm_parameters,
