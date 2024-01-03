@@ -425,12 +425,17 @@ def dataset_analysis(seed, input_filename, output_filename, registry_provisionin
         edge_server_cpu_demand += edge_server.cpu_demand
         edge_server_memory_demand += edge_server.memory_demand
 
+    normalized_capacity = normalize_cpu_and_memory(edge_server_cpu_capacity, edge_server_memory_capacity)
+    normalized_demand = normalize_cpu_and_memory(edge_server_cpu_demand, edge_server_memory_demand)
+
     edge_server_cpu_occupation = round((edge_server_cpu_demand / edge_server_cpu_capacity) * 100, 1)
     edge_server_memory_occupation = round((edge_server_memory_demand / edge_server_memory_capacity) * 100, 1)
 
     for service in edge_sim_py.Service.all():
         service_cpu_demand += service.cpu_demand
         service_memory_demand += service.memory_demand
+
+    normalized_service_demand = normalize_cpu_and_memory(service_cpu_demand, service_memory_demand)
 
     service_cpu_occupation = round((service_cpu_demand / edge_server_cpu_capacity) * 100, 1)
     service_memory_occupation = round((service_memory_demand / edge_server_memory_capacity) * 100, 1)
@@ -439,15 +444,20 @@ def dataset_analysis(seed, input_filename, output_filename, registry_provisionin
     print(f"Edge Servers: {edge_sim_py.EdgeServer.count()}")
     print(f"\tCPU Capacity: {edge_server_cpu_capacity}")
     print(f"\tRAM Capacity: {edge_server_memory_capacity}")
+    print(f"\tNormalized Capacity: {normalized_capacity}")
     print(f"\tCPU Demand: {edge_server_cpu_demand}")
     print(f"\tRAM Demand: {edge_server_memory_demand}")
+    print(f"\tNormalized Demand: {normalized_demand}")
     print(f"\tCPU Occupation: {edge_server_cpu_occupation}%")
     print(f"\tRAM Occupation: {edge_server_memory_occupation}%")
+    print(f"\tNormalized Occupation: {round((normalized_demand / normalized_capacity) * 100, 1)}%")
     print(f"Services: {edge_sim_py.Service.count()}")
     print(f"\tCPU Demand: {service_cpu_demand}")
     print(f"\tRAM Demand: {service_memory_demand}")
+    print(f"\tNormalized Demand: {normalized_service_demand}")
     print(f"\tCPU Occupation: {service_cpu_occupation}%")
     print(f"\tRAM Occupation: {service_memory_occupation}%")
+    print(f"\tNormalized Occupation: {round((normalized_service_demand / normalized_capacity) * 100, 1)}%")
 
     # Calculating the layer sharing between the images
     images = edge_sim_py.ContainerImage.all()
@@ -642,3 +652,17 @@ def user_to_dict(self) -> dict:
         },
     }
     return dictionary
+
+
+def normalize_cpu_and_memory(cpu, memory) -> float:
+    """Normalizes the CPU and memory values.
+
+    Args:
+        cpu (float): CPU value.
+        memory (float): Memory value.
+
+    Returns:
+        normalized_value (float): Normalized value.
+    """
+    normalized_value = (cpu * memory) ** (1 / 2)
+    return normalized_value
