@@ -77,13 +77,6 @@ def main(
     # Executing the simulation
     simulator.run_model()
 
-    # Printing the simulation results
-    results = {
-        "mean_latency": get_mean_latency(simulator=simulator),
-        "mean_provisioning_time": get_mean_provisioning_time(simulator=simulator),
-        "overloaded_servers": get_overloaded_edge_servers(simulator=simulator)
-    }
-    print(results)
 
 if __name__ == "__main__":
     # Parsing command line arguments

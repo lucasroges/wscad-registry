@@ -4,67 +4,6 @@ import random
 import edge_sim_py
 import networkx as nx
 
-def edge_server_step_with_least_congested_shortest_path(self):
-    """Method that executes the events involving the object at each time step.
-    
-    The difference from EdgeSimPy's default method is that this custom method uses the least congested shortest path 
-    instead of simply the shortest path to select the network path to be used to pull the container image from the registry.
-    """
-    while len(self.waiting_queue) > 0 and len(self.download_queue) < self.max_concurrent_layer_downloads:
-        layer = self.waiting_queue.pop(0)
-
-        # Gathering the list of registries that have the layer
-        registries_with_layer = []
-        for registry in [reg for reg in edge_sim_py.ContainerRegistry.all() if reg.available]:
-            # Checking if the registry is hosted on a valid host in the infrastructure and if it has the layer we need to pull
-            if registry.server and any(layer.digest == l.digest for l in registry.server.container_layers):
-                # Selecting a network path to be used to pull the layer from the registry
-                path_data = find_shortest_path(
-                    source=registry.server.base_station.network_switch,
-                    target=self.base_station.network_switch
-                )
-
-                registries_with_layer.append({
-                    "object": registry,
-                    "path": path_data,
-                    "max_data_to_transfer": None
-                })
-
-        # Filtering paths with the shortest path length
-        shortest_path = min(registries_with_layer, key=lambda r: len(r["path"]))["path"]
-        registries_with_layer = [r for r in registries_with_layer if len(r["path"]) == len(shortest_path)]
-
-        # Calculating the maximum data to transfer
-        for registry in registries_with_layer:
-            updated_path_data = least_congested_shortest_path(
-                topology=self.model.topology,
-                source=registry["object"].server.base_station.network_switch,
-                target=self.base_station.network_switch
-            )
-            registry["path"] = updated_path_data["path"]
-            registry["max_data_to_transfer"] = updated_path_data["max_data_to_transfer"]
-
-        # Selecting the registry from which the layer will be pulled to the (target) edge server
-        registries_with_layer = sorted(registries_with_layer, key=lambda r: (r["max_data_to_transfer"]))
-        registry = registries_with_layer[0]["object"]
-        path = registries_with_layer[0]["path"]
-
-        # Creating the flow object
-        flow = edge_sim_py.NetworkFlow(
-            topology=self.model.topology,
-            source=registry.server,
-            target=self,
-            start=self.model.schedule.steps + 1,
-            path=path,
-            data_to_transfer=layer.size,
-            metadata={"type": "layer", "object": layer, "container_registry": registry, "size": layer.size},
-        )
-        flow.total_size=layer.size
-        self.model.initialize_agent(agent=flow)
-
-        # Adding the created flow to the edge server's download queue
-        self.download_queue.append(flow)
-
 
 def network_flow_collect(self) -> dict:
     """Method that collects a set of metrics for the object.
@@ -402,6 +341,7 @@ def user_collect(self) -> dict:
     return metrics
 
 
+# TODO: add replication metrics
 def topology_collect(self) -> dict:
     """Method that collects a set of metrics for the object.
 
