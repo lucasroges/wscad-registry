@@ -16,8 +16,6 @@ def parse_arguments(parser: argparse.ArgumentParser):
 
     # Specific arguments
     parser.add_argument("--replicas", "-r", help="Number of replicas", default=1, type=int)
-    parser.add_argument("--percentage-of-replicated-images", "-p", help="Percentage of replicated images", default=1, type=float)
-    parser.add_argument("--registry-mapping", "-rm", help="Registry mapping", default=None, type=str)
 
     return parser.parse_args()
 
@@ -28,8 +26,6 @@ def main(
     dataset: str,
     number_of_steps: int,
     replicas: int,
-    percentage_of_replicated_images: float,
-    registry_mapping: str
 ):
     # Setting a seed value to enable reproducibility
     random.seed(seed)
@@ -38,14 +34,12 @@ def main(
     algorithm_parameters = {
         "algorithm": algorithm,
         "replicas": replicas,
-        "percentage_of_replicated_images": percentage_of_replicated_images,
-        "registry_mapping": list(map(int, registry_mapping)) if registry_mapping is not None else None
     }
 
     # Creating a Simulator object
     simulator = edge_sim_py.Simulator(
         dump_interval=4000,
-        logs_directory=f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed}" if algorithm != "resource_aware_dynamic" else f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed};replicas={replicas};percentage={percentage_of_replicated_images}",
+        logs_directory=f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed}" if algorithm != "resource_aware_dynamic" else f"logs/algorithm={algorithm};dataset={dataset.split('/')[-1].split('.')[0]};seed={seed};replicas={replicas}",
         resource_management_algorithm=algorithm_wrapper,
         resource_management_algorithm_parameters=algorithm_parameters,
         stopping_criterion=lambda model: model.schedule.steps == number_of_steps,
@@ -89,6 +83,4 @@ if __name__ == "__main__":
         dataset=arguments.dataset,
         number_of_steps=arguments.number_of_steps,
         replicas=arguments.replicas,
-        percentage_of_replicated_images=arguments.percentage_of_replicated_images,
-        registry_mapping=arguments.registry_mapping
     )

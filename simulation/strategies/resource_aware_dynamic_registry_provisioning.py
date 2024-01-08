@@ -35,37 +35,17 @@ def calculate_scores(candidate_servers: list):
     return scores_metadata
 
 
-def get_qualified_servers(scores_metadata: list, replicas: int = 2, percentage_of_replicated_images: float = 1):
-    """Gets the qualified servers.
+def has_reached_replication_target(replication_data: dict, replication_target: int) -> bool:
+    """Checks if the replication target has been reached.
 
     Args:
-        scores_metadata (list): List of scores metadata.
+        replication_data (dict): Dictionary with the replication data.
+        replication_target (int): Replication target.
 
     Returns:
-        list: List of qualified servers.
+        bool: True if the replication target has been reached, False otherwise.
     """
-    # Gathering variables
-    unique_image_digests = list(set([image.digest for image in edge_sim_py.ContainerImage.all()]))
-    unique_image_digests = {image_digest: 0 for image_digest in unique_image_digests}
-    number_of_unique_images = len(unique_image_digests)
-    replication_threshold = number_of_unique_images * percentage_of_replicated_images
-
-    # Filtering qualified servers
-    servers = [metadata["edge_server"] for metadata in scores_metadata]
-    qualified_servers = []
-    for server in servers:
-        number_of_images_with_min_replicas = len([digest for digest, count in unique_image_digests.items() if count >= replicas])
-
-        if number_of_images_with_min_replicas > replication_threshold:
-            break
-
-        for image in server.container_images:
-            if image.digest in unique_image_digests:
-                unique_image_digests[image.digest] += 1
-
-        qualified_servers.append(server)
-
-    return qualified_servers
+    return all([count >= replication_target for digest, count in replication_data.items()])
 
 
 def resource_aware_dynamic_registry_provisioning(parameters: dict):
@@ -83,7 +63,6 @@ def resource_aware_dynamic_registry_provisioning(parameters: dict):
     # Gathering input parameters
     execution_frequency = 60 # seconds
     image_replicas = parameters["replicas"]
-    percentage_of_replicated_images = parameters["percentage_of_replicated_images"]
 
     # Skip strategy execution if it is not the time to execute it
     if current_step % execution_frequency != 0:
@@ -95,15 +74,27 @@ def resource_aware_dynamic_registry_provisioning(parameters: dict):
     # Calculating scores for each candidate server
     scores_metadata = calculate_scores(candidate_servers)
 
-    # Filtering qualified edge servers (i.e., servers with metrics above the average)
-    qualified_servers = get_qualified_servers(scores_metadata, image_replicas, percentage_of_replicated_images)
-
     # Provisioning and deprovisioning container registries
-    for server in candidate_servers:
-        is_qualified_server = server in qualified_servers
-        has_container_registry = server.container_registries != []
-        
-        if is_qualified_server and not has_container_registry:
+    unique_image_digests = list(set([image.digest for image in edge_sim_py.ContainerImage.all()]))
+    replication_data = {image_digest: 0 for image_digest in unique_image_digests}
+    while not has_reached_replication_target(replication_data, image_replicas) and scores_metadata != []:
+        # Gathering variables
+        metadata = scores_metadata.pop(0)
+        server = metadata["edge_server"]
+        server_has_container_registry = server.container_registries != []
+        image_digests = [image.digest for image in server.container_images]
+        images_on_server_with_replication_target_accomplished = len(
+            [digest for digest in image_digests if replication_data[digest] >= image_replicas]
+        )
+        images_on_server_with_replication_target_unaccomplished = len(
+            [digest for digest in image_digests if replication_data[digest] < image_replicas]
+        )
+
+        # Checking if at least half of the images in the server storage have not reached the replication target yet
+        if (
+            images_on_server_with_replication_target_unaccomplished >= images_on_server_with_replication_target_accomplished and
+            not server_has_container_registry
+        ):
             container_registry = edge_sim_py.ContainerRegistry.provision(
                 target_server=server,
                 registry_cpu_demand=template_registry.cpu_demand,
@@ -111,9 +102,22 @@ def resource_aware_dynamic_registry_provisioning(parameters: dict):
             )
             container_registry.p2p_registry = True
 
-        elif not is_qualified_server and has_container_registry:
-            container_registry = server.container_registries[0]
+            # Updating replication data
+            for image in server.container_images:
+                replication_data[image.digest] += 1
 
+            continue
+        
+        # If the server was not selected and it has a container registry, deprovision it
+        if server_has_container_registry:
+            container_registry = server.container_registries[0]
             container_registry.deprovision()
 
-    return
+    # Deprovisioning remaining container registries
+    for metadata in scores_metadata:
+        server = metadata["edge_server"]
+        server_has_container_registry = server.container_registries != []
+
+        if server_has_container_registry:
+            container_registry = server.container_registries[0]
+            container_registry.deprovision()
