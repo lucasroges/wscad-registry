@@ -91,16 +91,15 @@ def resource_aware_dynamic_registry_provisioning(parameters: dict):
         )
 
         # Checking if at least half of the images in the server storage have not reached the replication target yet
-        if (
-            images_on_server_with_replication_target_unaccomplished >= images_on_server_with_replication_target_accomplished and
-            not server_has_container_registry
-        ):
-            container_registry = edge_sim_py.ContainerRegistry.provision(
-                target_server=server,
-                registry_cpu_demand=template_registry.cpu_demand,
-                registry_memory_demand=template_registry.memory_demand,
-            )
-            container_registry.p2p_registry = True
+        if images_on_server_with_replication_target_unaccomplished >= images_on_server_with_replication_target_accomplished:
+            # If the server was selected and it does not have a container registry, provision it
+            if not server_has_container_registry:
+                container_registry = edge_sim_py.ContainerRegistry.provision(
+                    target_server=server,
+                    registry_cpu_demand=template_registry.cpu_demand,
+                    registry_memory_demand=template_registry.memory_demand,
+                )
+                container_registry.p2p_registry = True
 
             # Updating replication data
             for image in server.container_images:
