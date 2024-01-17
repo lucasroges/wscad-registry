@@ -341,7 +341,6 @@ def user_collect(self) -> dict:
     return metrics
 
 
-# TODO: add replication metrics
 def topology_collect(self) -> dict:
     """Method that collects a set of metrics for the object.
 
@@ -381,11 +380,27 @@ def topology_collect(self) -> dict:
         active_servers_per_model[model_name] = len([item for item in occupation_per_model[model_name] if item > 0])
         occupation_per_model[model_name] = sum(occupation_per_model[model_name]) / len(occupation_per_model[model_name])            
 
+    # Replication metrics
+    replication_data = {}
+    for image in edge_sim_py.ContainerImage.all():
+        if image.name == "registry":
+            continue
+
+        if image.digest not in replication_data.keys():
+            replication_data[image.digest] = 0
+
+        if image.server.container_registries != [] and image.server.container_registries[0].p2p_registry:
+            replication_data[image.digest] += 1
+
+    # Grouping replication metrics by number of replicas
+    replication_data = {key: len([item for item in replication_data.values() if item == key]) for key in set(replication_data.values())}
+
     metrics = {
         "Overloaded Edge Servers": overloaded_edge_servers,
         "Overall Occupation": overall_occupation,
         "Occupation Per Model": occupation_per_model,
-        "Active Servers Per Model": active_servers_per_model
+        "Active Servers Per Model": active_servers_per_model,
+        "Replication Data": replication_data,
     }
 
     return metrics
