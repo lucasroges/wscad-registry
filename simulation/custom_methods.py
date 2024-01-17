@@ -172,12 +172,6 @@ def service_collect(self) -> dict:
     Returns:
         metrics (dict): Object metrics.
     """
-    number_of_migrations = len(self._Service__migrations)
-    number_of_finished_migrations = len([migration for migration in self._Service__migrations if migration["status"] == "finished"])
-    number_of_finished_migrations_without_using_cache = len(
-        [migration for migration in self._Service__migrations if migration["status"] == "finished" and migration["waiting_time"] + migration["pulling_layers_time"] > 0]
-    )
-
     total_waiting_time = sum([migration["waiting_time"] for migration in self._Service__migrations])
     total_pulling_layers_time = sum([migration["pulling_layers_time"] for migration in self._Service__migrations])
 
@@ -189,13 +183,13 @@ def service_collect(self) -> dict:
         "Available": self._available,
         "Server": self.server.id if self.server else None,
         "Being Provisioned": self.being_provisioned,
-        "Number of Migrations": number_of_migrations,
-        "Number of Finished Migrations": number_of_finished_migrations,
-        "Number of Finished Migrations Without Using Cache": number_of_finished_migrations_without_using_cache,
         "Total Waiting Time": total_waiting_time,
         "Total Pulling Layers Time": total_pulling_layers_time,
         "Migrations Duration": migrations_duration,
         "Migrations Without Cache Duration": migrations_without_cache_duration,
+        "Migrations (Only Cache)": len([migration for migration in self._Service__migrations if migration["status"] == "finished" and migration["cache_usage"] == 1]),
+        "Migrations (Partial Cache)": len([migration for migration in self._Service__migrations if migration["status"] == "finished" and migration["cache_usage"] > 0 and migration["cache_usage"] < 1]),
+        "Migrations (No Cache)": len([migration for migration in self._Service__migrations if migration["status"] == "finished" and migration["cache_usage"] == 0]),
     }
     return metrics
 
@@ -219,11 +213,14 @@ def service_provision(self, target_server: object):
 
     # Gathering the list of layers that compose the service image that are not present in the target server
     image = edge_sim_py.ContainerImage.find_by(attribute_name="digest", attribute_value=self.image_digest)
+    image_size = 0
+    cache_usage = 0
     for layer_digest in image.layers_digests:
-        if not any(layer.digest == layer_digest for layer in layers_on_target_server):
-            # As the image only stores its layers digests, we need to get information about each of its layers
-            layer_metadata = edge_sim_py.ContainerLayer.find_by(attribute_name="digest", attribute_value=layer_digest)
+        # As the image only stores its layers digests, we need to get information about each of its layers
+        layer_metadata = edge_sim_py.ContainerLayer.find_by(attribute_name="digest", attribute_value=layer_digest)
+        image_size += layer_metadata.size
 
+        if not any(layer.digest == layer_digest for layer in layers_on_target_server):
             # Creating a new layer object that will be pulled to the target server
             layer = edge_sim_py.ContainerLayer(
                 digest=layer_metadata.digest,
@@ -237,6 +234,8 @@ def service_provision(self, target_server: object):
 
             # Adding the layer to the target server's waiting queue (layers it must download at some point)
             target_server.waiting_queue.append(layer)
+        else:
+            cache_usage += layer_metadata.size
 
     # Telling EdgeSimPy that this service is being provisioned
     self.being_provisioned = True
@@ -262,6 +261,7 @@ def service_provision(self, target_server: object):
             "waiting_time": 0,
             "pulling_layers_time": 0,
             "migrating_service_state_time": 0,
+            "cache_usage": cache_usage / image_size,
         }
     )
 
